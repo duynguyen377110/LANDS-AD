@@ -1,1 +1,14 @@
-<p>commons-input works!</p>
+<div class="common-input-component">
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>{{label}}</mat-label>
+          <input
+            [type]="type"
+            matInput
+            [formControl]="formControl"
+            placeholder="Ex. pat@example.com"
+            (blur)="onBlurHandler()"/>
+            <mat-error *ngIf="error">{{error.message}}</mat-error>
+        </mat-form-field>
+      </form>
+</div>
