@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CategoryHttpService } from 'src/app/services/category/category-http.service';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
 import { environment } from 'src/environments/environment';
@@ -9,16 +11,19 @@ import { environment } from 'src/environments/environment';
   templateUrl: './dashboard-category-new.component.html',
   styleUrls: ['./dashboard-category-new.component.scss']
 })
-export class DashboardCategoryNewComponent implements OnInit {
+export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
   url: string = `${environment.api.url}${environment.api.category.new}`;
 
   formCategory: FormGroup = new FormGroup({});
   title: FormControl = new FormControl('', [this.inputVali.require()]);
-  des: FormControl = new FormControl('', [this.inputVali.require()]);
+  description: FormControl = new FormControl('', [this.inputVali.require()]);
   submit: boolean = false;
+  serviceCategorySub: Subscription = new Subscription();
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
     private inputVali: ValidationsService,
     private serviceCategory: CategoryHttpService,
   ) { }
@@ -30,7 +35,7 @@ export class DashboardCategoryNewComponent implements OnInit {
   createForm(): void {
     this.formCategory = this.fb.group({
       title: this.title,
-      des: this.des
+      description: this.description
     })
   }
 
@@ -40,20 +45,20 @@ export class DashboardCategoryNewComponent implements OnInit {
 
     if(this.formCategory.status !== "INVALID") {
       this.submit = false;
-      // this.serviceCategory.post(this.url, JSON.stringify(this.formCategory.value))
-      // .subscribe((res) => {
-      //   console.log(res);
-      // })
-      let res = await fetch('http://localhost:8080/api/v1/admin/category/new', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({title: 'Text', des: 'Text'})
-      });
 
-      let data = await res.json();
-      console.log(data);
+      this.serviceCategorySub = this.serviceCategory.post(this.url, this.formCategory.value)
+      .subscribe((res) => {
+        let { status } = res;
+
+        if(status) {
+          this.router.navigate(['..'], {relativeTo: this.route});
+        }
+      })
     }
   }
+
+  ngOnDestroy(): void {
+    this.serviceCategorySub.unsubscribe();
+  }
+
 }
