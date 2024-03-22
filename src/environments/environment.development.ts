@@ -1,6 +1,6 @@
 export const environment = {
     api: {
-        url: "http://localhost:8080/v1/api/admin/",
+        url: "http://localhost:8080/api/v1/admin/",
         category: {
             root: "category",
             new: "category/new",

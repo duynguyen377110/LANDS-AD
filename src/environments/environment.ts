@@ -1,6 +1,6 @@
 export const environment = {
     api: {
-        url: "https://lands-be.onrender.com/v1/api/admin/",
+        url: "https://lands-be.onrender.com/api/v1/admin/",
         category: {
             root: "category",
             new: "category/new",
