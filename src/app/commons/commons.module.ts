@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms'
+
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 import { CommonsRoutingModule } from './commons-routing.module';
 import { CommonsInputComponent } from './commons-input/commons-input.component';
@@ -21,7 +25,10 @@ import { CommonTabsComponent } from './common-tabs/common-tabs.component';
   ],
   imports: [
     CommonModule,
-    CommonsRoutingModule
+    CommonsRoutingModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonsInputComponent,

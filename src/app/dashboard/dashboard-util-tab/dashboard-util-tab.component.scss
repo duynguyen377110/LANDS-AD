@@ -1,0 +1,12 @@
+.dashboard-util-tab-component {
+    background-color: #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    .util-tab-title {
+        font-size: 16px;
+        margin: 0px;
+    }
+}
