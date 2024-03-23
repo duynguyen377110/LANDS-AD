@@ -12,6 +12,7 @@ import { CommonButtonComponent } from './common-button/common-button.component';
 import { CommonTableComponent } from './common-table/common-table.component';
 import { CommonHeaderComponent } from './common-header/common-header.component';
 import { CommonTabsComponent } from './common-tabs/common-tabs.component';
+import { CommonInputFileComponent } from './common-input-file/common-input-file.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CommonTabsComponent } from './common-tabs/common-tabs.component';
     CommonButtonComponent,
     CommonTableComponent,
     CommonHeaderComponent,
-    CommonTabsComponent
+    CommonTabsComponent,
+    CommonInputFileComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { CommonTabsComponent } from './common-tabs/common-tabs.component';
     CommonButtonComponent,
     CommonTableComponent,
     CommonHeaderComponent,
-    CommonTabsComponent
+    CommonTabsComponent,
+    CommonInputFileComponent
   ]
 })
 export class CommonsModule { }

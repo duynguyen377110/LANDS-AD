@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CategoryHttpService } from 'src/app/services/category/category-http.service';
+import { HttpSendFileService } from 'src/app/services/http-send-file/http-send-file.service';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,7 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
   formCategory: FormGroup = new FormGroup({});
   title: FormControl = new FormControl('', [this.inputVali.require()]);
   description: FormControl = new FormControl('', [this.inputVali.require()]);
+  photos: FormControl = new FormControl('', []);
   submit: boolean = false;
   serviceCategorySub: Subscription = new Subscription();
 
@@ -25,7 +27,8 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private inputVali: ValidationsService,
-    private serviceCategory: CategoryHttpService,
+    // private serviceCategory: CategoryHttpService,
+    private httpSendFile: HttpSendFileService,
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +38,8 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
   createForm(): void {
     this.formCategory = this.fb.group({
       title: this.title,
-      description: this.description
+      description: this.description,
+      photos: this.photos
     })
   }
 
@@ -46,14 +50,28 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
     if(this.formCategory.status !== "INVALID") {
       this.submit = false;
 
-      this.serviceCategorySub = this.serviceCategory.post(this.url, this.formCategory.value)
-      .subscribe((res) => {
-        let { status } = res;
+      console.log(this.formCategory);
 
-        if(status) {
-          this.router.navigate(['..'], {relativeTo: this.route});
-        }
-      })
+      let formCategoryData = new FormData();
+      formCategoryData.append('title', this.formCategory.value.title);
+      formCategoryData.append('description', this.formCategory.value.description);
+
+
+      let inputPhotos: any = this.formCategory.controls['photos'];
+
+      if(inputPhotos.value.length) {
+          for(let file of inputPhotos.value) {
+            formCategoryData.append('photos', file);
+          }
+      }
+
+      let res = await this.httpSendFile.post(this.url, formCategoryData);
+      let { status } = res;
+
+      if(status) {
+        this.router.navigate(['..'], {relativeTo: this.route});
+      }
+      
     }
   }
 
