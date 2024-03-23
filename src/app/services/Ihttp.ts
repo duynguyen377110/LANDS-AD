@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
 export interface Ihttp {
-    get(): void
+    get(url: string): Observable<any>;
 
     post(url: String, payload: any): Observable<any>
 

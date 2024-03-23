@@ -12,8 +12,8 @@ export class CategoryHttpService implements Ihttp {
     private http: HttpClient
   ) { }
 
-  get(): void {
-    throw new Error('Method not implemented.');
+  get(url: string): Observable<any> {
+    return this.http.get(url);
   }
 
   post(url: string, payload: any = {}): Observable<any> {
