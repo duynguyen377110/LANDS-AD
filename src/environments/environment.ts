@@ -9,8 +9,12 @@ export const environment = {
             delete: "category/delete",
             all: "category/all",
             amount: "category/amount",
+
+            admin: {
+                destroy: 'category'
+            },
             common: {
-                all: 'common/category/all'
+                all: 'category/all'
             }
         },
     }

@@ -12,8 +12,11 @@ import { environment } from 'src/environments/environment';
 export class DashboardCategoryComponent implements OnInit,OnDestroy {
 
   url: string = `${environment.api.urlCommon}${environment.api.category.common.all}`;
+  urlDestroy: string = `${environment.api.url}${environment.api.category.admin.destroy}`;
+
   amountDataSub: Subscription = new Subscription();
   allCategorySub: Subscription = new Subscription();
+  destroyCategorySub: Subscription = new Subscription();
 
   categories: Array<any> = [];
 
@@ -36,8 +39,17 @@ export class DashboardCategoryComponent implements OnInit,OnDestroy {
     })
   }
 
+
+  onDeleteHander(event: any) {    
+    this.destroyCategorySub = this.httpService.delete(this.urlDestroy, {id: event})
+    .subscribe((res) => {
+      console.log(res);
+    })
+  }
+
   ngOnDestroy(): void {
     this.amountDataSub.unsubscribe();
     this.allCategorySub.unsubscribe();
+    this.destroyCategorySub.unsubscribe();
   }
 }
