@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
 
 import { CommonsRoutingModule } from './commons-routing.module';
 import { CommonsInputComponent } from './commons-input/commons-input.component';
@@ -30,6 +31,7 @@ import { CommonInputFileComponent } from './common-input-file/common-input-file.
     CommonsRoutingModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
     ReactiveFormsModule
   ],
   exports: [

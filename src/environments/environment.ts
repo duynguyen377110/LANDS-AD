@@ -1,6 +1,7 @@
 export const environment = {
     api: {
         url: "https://lands-be.onrender.com/api/v1/admin/",
+        urlCommon: "https://lands-be.onrender.com/api/v1/common/",
         category: {
             root: "category",
             new: "category/new",
@@ -8,6 +9,9 @@ export const environment = {
             delete: "category/delete",
             all: "category/all",
             amount: "category/amount",
+            common: {
+                all: 'common/category/all'
+            }
         },
     }
 };

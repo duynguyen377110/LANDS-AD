@@ -1,0 +1,13 @@
+.common-table-component {
+    td {
+        vertical-align: baseline;
+    }
+    .table-thumb {
+        width: 90px;
+    }
+    .table-method {
+        border-top: unset;
+        display: flex;
+        gap: 1rem;
+    }
+}

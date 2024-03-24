@@ -1,0 +1,8 @@
+.common-button-container {
+    &.normal-size {
+        width: fit-content;
+    }
+    &.full-size {
+        width: 100%;
+    }
+}
