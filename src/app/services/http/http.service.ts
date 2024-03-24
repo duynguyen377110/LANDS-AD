@@ -25,7 +25,7 @@ export class HttpService implements Ihttp {
 
   }
 
-  delete(): void {
-
+  delete(url: string, payload: any): Observable<any> {
+    return this.http.delete(url, {body: payload});
   }
 }

@@ -7,5 +7,5 @@ export interface Ihttp {
 
     push(): void
 
-    delete(): void
+    delete(url: string, payload: any): Observable<any>
 }

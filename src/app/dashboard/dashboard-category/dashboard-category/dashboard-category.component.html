@@ -1,5 +1,6 @@
 <div class="dashboard-category-component">
     <app-common-table
         [type]="'category'"
-        [list]="categories"></app-common-table>
+        [list]="categories"
+        (emitDelete)="onDeleteHander($event)"></app-common-table>
 </div>

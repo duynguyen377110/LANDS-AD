@@ -24,7 +24,7 @@ export class CategoryHttpService implements Ihttp {
     throw new Error('Method not implemented.');
   }
 
-  delete(): void {
+  delete(url: string, payload: any): Observable<any> {
     throw new Error('Method not implemented.');
   }
 }
