@@ -1,6 +1,19 @@
-<div class="common-button-container">
+<div
+    [ngClass]="{'full-size': size !== 'default', 'normal-size': size === 'default'}"
+    class="common-button-container">
     <button
-        [type]="type"
+        *ngIf="kind === 'default'"
+        data-id="1"
         mat-raised-button
-        color="primary">Primary</button>
+        [type]="type"
+        (click)="onClickHandler($event)"
+        color="primary">{{title}}</button>
+
+    <button
+        *ngIf="kind === 'danger'"
+        data-id="1"
+        mat-raised-button
+        [type]="type"
+        (click)="onClickHandler($event)"
+        color="warn">{{title}}</button>
 </div>

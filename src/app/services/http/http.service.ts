@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 import { Ihttp } from '../Ihttp';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryHttpService implements Ihttp {
+export class HttpService implements Ihttp {
 
   constructor(
     private http: HttpClient
@@ -16,15 +17,15 @@ export class CategoryHttpService implements Ihttp {
     return this.http.get(url);
   }
 
-  post(url: string, payload: any = {}): Observable<any> {
+  post(url: string, payload: any): Observable<any> {
     return this.http.post(url, payload);
   }
 
   push(): void {
-    throw new Error('Method not implemented.');
+
   }
 
   delete(): void {
-    throw new Error('Method not implemented.');
+
   }
 }

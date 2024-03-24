@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-common-button',
@@ -7,5 +7,17 @@ import { Component, Input } from '@angular/core';
 })
 export class CommonButtonComponent {
 
-  @Input('type') type:String = 'button';
+  @Input('title') title: string = '';
+  @Input('type') type: string = 'button';
+  @Input('kind') kind: string = 'default';
+  @Input('size') size: string = 'default';
+  @Input('id') id: any = '';
+
+  @Output('emitClick') emitClick: EventEmitter<any> = new EventEmitter<any>();
+
+
+  onClickHandler(event: any) {
+    this.emitClick.emit(this.id);
+  }
+  
 }
