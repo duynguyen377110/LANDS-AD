@@ -11,9 +11,12 @@ export const environment = {
             amount: "category/amount",
 
             admin: {
-                destroy: 'category'
+                root: 'category',
+                update: 'category',
+                destroy: 'category',
             },
             common: {
+                root: 'category',
                 all: 'category/all'
             }
         },

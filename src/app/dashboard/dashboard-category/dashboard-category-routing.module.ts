@@ -4,6 +4,7 @@ import { DashboardCategoryComponent } from './dashboard-category/dashboard-categ
 import { DashboardCategoryNewComponent } from './dashboard-category-new/dashboard-category-new.component';
 import { DashboardCategoryEditComponent } from './dashboard-category-edit/dashboard-category-edit.component';
 import { CategoryAmountService } from 'src/app/services/category/category-amount.service';
+import { CategoryLoadSingleService } from 'src/app/services/category/category-load-single.service';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
+    resolve: {category: CategoryLoadSingleService},
     component: DashboardCategoryEditComponent
   }
 ];

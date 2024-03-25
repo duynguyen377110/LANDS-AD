@@ -21,14 +21,14 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
   photos: FormControl = new FormControl('', []);
   submit: boolean = false;
   serviceCategorySub: Subscription = new Subscription();
+  titleButton: string = 'New category';
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private inputVali: ValidationsService,
-    // private serviceCategory: CategoryHttpService,
-    private httpSendFile: HttpSendFileService,
+    public fb: FormBuilder,
+    public router: Router,
+    public route: ActivatedRoute,
+    public inputVali: ValidationsService,
+    public httpSendFile: HttpSendFileService,
   ) { }
 
   ngOnInit(): void {
@@ -49,8 +49,6 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
 
     if(this.formCategory.status !== "INVALID") {
       this.submit = false;
-
-      console.log(this.formCategory);
 
       let formCategoryData = new FormData();
       formCategoryData.append('title', this.formCategory.value.title);

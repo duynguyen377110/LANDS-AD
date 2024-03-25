@@ -10,6 +10,7 @@ export class CommonTableComponent {
   @Input('list') list: Array<any> = [];
 
   @Output('emitDelete') emitDelete: EventEmitter<any> = new EventEmitter<any>();
+  @Output('emitUpdate') emitUpdate: EventEmitter<any> = new EventEmitter<any>();
 
   columnsCategory: Array<string> = ['STT', 'Tiêu đề', 'Ảnh', 'Chức năng'];
 
@@ -17,5 +18,7 @@ export class CommonTableComponent {
     this.emitDelete.emit(event);
   }
 
-  onEditHandler(event: any) { }
+  onEditHandler(event: any) {
+    this.emitUpdate.emit(event);
+  }
 }

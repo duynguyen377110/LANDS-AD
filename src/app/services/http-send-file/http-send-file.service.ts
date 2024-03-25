@@ -12,9 +12,24 @@ export class HttpSendFileService {
       try {
         let res = await fetch(url, {
           method: 'POST',
-          // headers: {
-          //   'Content-Type': 'application/json',
-          // },
+          body: payload
+        })
+
+        if(!res.ok) throw new Error('Call api unsuccess');
+        resolve(await res.json());
+
+      } catch (error) {
+        reject(error);
+
+      }
+    })
+  }
+
+  patch(url: string, payload: any = {}): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let res = await fetch(url, {
+          method: 'PATCH',
           body: payload
         })
 
