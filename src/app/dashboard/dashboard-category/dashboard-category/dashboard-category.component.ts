@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpService } from 'src/app/services/http/http.service';
 import { environment } from 'src/environments/environment';
@@ -21,6 +21,7 @@ export class DashboardCategoryComponent implements OnInit,OnDestroy {
   categories: Array<any> = [];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private httpService: HttpService
   ) { }
@@ -45,6 +46,10 @@ export class DashboardCategoryComponent implements OnInit,OnDestroy {
     .subscribe((res) => {
       console.log(res);
     })
+  }
+
+  onUpdateHandler(event: any) {
+    this.router.navigate(['/category/edit', event]);
   }
 
   ngOnDestroy(): void {

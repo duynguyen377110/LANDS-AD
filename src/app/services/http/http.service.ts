@@ -21,9 +21,11 @@ export class HttpService implements Ihttp {
     return this.http.post(url, payload);
   }
 
-  push(): void {
-
+  patch(url: string, payload: any): Observable<any> {
+    return this.http.patch(url, payload);
   }
+
+  push(): void { }
 
   delete(url: string, payload: any): Observable<any> {
     return this.http.delete(url, {body: payload});
