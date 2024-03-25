@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CategoryHttpService } from 'src/app/services/category/category-http.service';
 import { HttpSendFileService } from 'src/app/services/http-send-file/http-send-file.service';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
 import { environment } from 'src/environments/environment';
@@ -13,7 +12,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard-category-new.component.scss']
 })
 export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
-  url: string = `${environment.api.url}${environment.api.category.new}`;
+  url: string = `${environment.api.url}${environment.api.category.admin.root}`;
 
   formCategory: FormGroup = new FormGroup({});
   title: FormControl = new FormControl('', [this.inputVali.require()]);

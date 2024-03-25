@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError, map } from 'rxjs';
 import { Ihttp } from '../Ihttp';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+
+import { toggleLoader } from "../../store/store-loader/store-loader-action";
 
 
 @Injectable({
@@ -10,24 +13,71 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService implements Ihttp {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private store: Store<{loader: any}>
   ) { }
 
   get(url: string): Observable<any> {
-    return this.http.get(url);
+    this.store.dispatch(toggleLoader());
+
+    return this.http.get(url)
+    .pipe(
+      map((response: any) => {
+        this.store.dispatch(toggleLoader());
+        return response;
+      }),
+      catchError((responseErr: any) => {
+        this.store.dispatch(toggleLoader());
+        return throwError(() => responseErr);
+      })
+    )
   }
 
   post(url: string, payload: any): Observable<any> {
-    return this.http.post(url, payload);
+    this.store.dispatch(toggleLoader());
+
+    return this.http.post(url, payload)
+    .pipe(
+      map((response: any) => {
+        this.store.dispatch(toggleLoader());
+        return response;
+      }),
+      catchError((responseErr: any) => {
+        this.store.dispatch(toggleLoader());
+        return throwError(() => responseErr);
+      })
+    )
   }
 
   patch(url: string, payload: any): Observable<any> {
-    return this.http.patch(url, payload);
+    this.store.dispatch(toggleLoader());
+    return this.http.patch(url, payload)
+    .pipe(
+      map((response: any) => {
+        this.store.dispatch(toggleLoader());
+        return response;
+      }),
+      catchError((responseErr: any) => {
+        this.store.dispatch(toggleLoader());
+        return throwError(() => responseErr);
+      })
+    )
   }
 
   push(): void { }
 
   delete(url: string, payload: any): Observable<any> {
-    return this.http.delete(url, {body: payload});
+    this.store.dispatch(toggleLoader());
+    return this.http.delete(url, {body: payload})
+    .pipe(
+      map((response: any) => {
+        this.store.dispatch(toggleLoader());
+        return response;
+      }),
+      catchError((responseErr: any) => {
+        this.store.dispatch(toggleLoader());
+        return throwError(() => responseErr);
+      })
+    )
   }
 }

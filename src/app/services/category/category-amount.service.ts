@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { CategoryHttpService } from './category-http.service';
+import { HttpService } from '../http/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryAmountService implements Resolve<any> {
-  url: string = `${environment.api.url}${environment.api.category.amount}`;
+  url: string = `${environment.api.urlCommon}${environment.api.category.common.amount}`;
 
   constructor(
-    private categoryHttpService: CategoryHttpService
+    private httpService: HttpService
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.categoryHttpService.get(this.url);
+    return this.httpService.get(this.url);
   }
 
 }

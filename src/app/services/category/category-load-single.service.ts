@@ -13,9 +13,8 @@ export class CategoryLoadSingleService implements Resolve<any> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let url: string = `${environment.api.urlCommon}${environment.api.category.common.root}`;
     let { id } = route.params;
-    url = `${url}/${id}`;
+    let url: string = `${environment.api.urlCommon}${environment.api.category.common.root}/${id}`;
     return this.httpService.get(url);
   }
 }
