@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonsModule } from './commons/commons.module';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+
+import { loaderReducer } from './store/store-loader/store-loader-reducer';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({
+      loader: loaderReducer
+    }, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
