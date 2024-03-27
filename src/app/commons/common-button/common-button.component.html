@@ -3,7 +3,6 @@
     class="common-button-container">
     <button
         *ngIf="kind === 'default'"
-        data-id="1"
         mat-raised-button
         [type]="type"
         (click)="onClickHandler($event)"
@@ -11,7 +10,6 @@
 
     <button
         *ngIf="kind === 'danger'"
-        data-id="1"
         mat-raised-button
         [type]="type"
         (click)="onClickHandler($event)"
