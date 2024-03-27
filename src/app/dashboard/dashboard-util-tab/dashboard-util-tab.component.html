@@ -1,6 +1,12 @@
-<div class="dashboard-util-tab-component">
-    <h2 class="util-tab-title">{{currentPoist}}</h2>
-    <div class="util-tab-redirect">
-        <button (click)="onRedirectHandler()">Link</button>
+<div
+    *ngIf="dashboardUtilTabShow"
+    class="dashboard-util-tab-component">
+    <h2 class="util-tab-title">{{title}}</h2>
+    <div
+        *ngIf="buttonNewShow"
+        class="util-tab-redirect">
+        <app-common-button
+            [title]="title"
+            (emitClick)="onRedirectHandler($event)"></app-common-button>
     </div>
 </div>

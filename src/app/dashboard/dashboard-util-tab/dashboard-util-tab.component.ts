@@ -10,7 +10,10 @@ import { Subscription } from 'rxjs';
 export class DashboardUtilTabComponent implements OnInit, OnDestroy {
 
   eventSub: Subscription = new Subscription();
-  currentPoist: String = '';
+  currentPoint: String = '';
+  title: string = '';
+  buttonNewShow: boolean = true;
+  dashboardUtilTabShow: boolean = true;
 
   constructor(
     private router: Router
@@ -18,17 +21,40 @@ export class DashboardUtilTabComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.eventSub = this.router.events.subscribe((event: any) => {
-      this.currentPoist = event.routerEvent?.urlAfterRedirects;
+      this.currentPoint = event.routerEvent?.urlAfterRedirects;
+      this.setInitialState();
     })
   }
 
-  onRedirectHandler() {
-    switch(this.currentPoist) {
+  setInitialState() {
+    if(this.currentPoint?.length && this.currentPoint !== '/') {
+      this.dashboardUtilTabShow = true;
+      let points = this.currentPoint.split('/').filter((point) => point);
+
+      switch(points[0]) {
+        case 'category':
+          this.title = 'Danh mục'
+          break
+      }
+      this.buttonNewShow = true;
+
+      if(points?.length > 1) {
+        this.buttonNewShow = false;
+        if(points.includes('new')) {
+          this.title += '/Thêm mới';
+          return;
+        }
+        this.title += '/Cập nhật'
+      }
+    } else {
+      this.dashboardUtilTabShow = false;
+    }
+  }
+
+  onRedirectHandler(event: any) {
+    switch(this.currentPoint) {
       case '/category':
         this.router.navigate(['/category/new']);
-        break
-
-      default:
         break
     }
   }
