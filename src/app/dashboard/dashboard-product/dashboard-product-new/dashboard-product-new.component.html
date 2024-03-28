@@ -1,1 +1,75 @@
-<p>dashboard-product-new works!</p>
+<div class="dashboard-product-new-component">
+    <form [formGroup]="formProduct" (submit)="onSubmitHandler($event)">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="productOwner"
+                    [label]="'Chủ sở hữu'"
+                    [id]="'product-owner'"
+                    [submit]="submit"
+                    [type]="'text'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="address"
+                    [label]="'Địa chỉ'"
+                    [id]="'product-address'"
+                    [submit]="submit"
+                    [type]="'text'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="contact"
+                    [label]="'Thông tin liên hệ'"
+                    [id]="'product-contact'"
+                    [submit]="submit"
+                    [type]="'text'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="landArea"
+                    [label]="'Diện tích đất'"
+                    [id]="'product-land-area'"
+                    [submit]="submit"
+                    [type]="'text'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="price"
+                    [label]="'Giá bán sản phẩm'"
+                    [id]="'product-price'"
+                    [submit]="submit"
+                    [type]="'number'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-common-select
+                    ngDefaultControl
+                    [formControl]="categories"
+                    [label]="'Loại đất'"
+                    [id]="'product-categories'"
+                    [submit]="submit"></app-common-select>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-common-input-file
+                    [formControl]="photos"></app-common-input-file>
+            </div>
+
+            <div class="col-12 mt-5">
+                <app-common-button
+                    [type]="'submit'"
+                    [title]="titleButton"></app-common-button>
+            </div>
+        </div>
+    </form>
+</div>

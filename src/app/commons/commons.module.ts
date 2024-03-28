@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { CommonsRoutingModule } from './commons-routing.module';
@@ -37,6 +38,7 @@ import { CommonLoaderComponent } from './common-loader/common-loader.component';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
+    MatSelectModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule
   ],
