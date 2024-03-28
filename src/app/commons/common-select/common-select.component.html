@@ -1,1 +1,13 @@
-<p>common-select works!</p>
+<div class="common-select-component">
+    <mat-form-field>
+        <mat-label>{{ label }}</mat-label>
+        <mat-select
+            (blur)="onBlurHandler()"
+            [formControl]="formControl">
+          <mat-option>Clear</mat-option>
+          <mat-option value="valid">Valid option</mat-option>
+          <mat-option value="invalid">Invalid option</mat-option>
+        </mat-select>
+        <mat-error *ngIf="error">{{error.message}}</mat-error>
+      </mat-form-field>
+</div>
