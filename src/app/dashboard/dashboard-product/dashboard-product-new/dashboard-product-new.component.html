@@ -54,6 +54,8 @@
             <div class="col-12 col-md-6">
                 <app-common-select
                     ngDefaultControl
+                    [datas]="selectCategories"
+                    [defaultOpt]="'Chọn loại sản phẩm pù hợp'"
                     [formControl]="categories"
                     [label]="'Loại đất'"
                     [id]="'product-categories'"

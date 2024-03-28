@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardProductComponent } from './dashboard-product/dashboard-product.component';
 import { DashboardProductNewComponent } from './dashboard-product-new/dashboard-product-new.component';
 import { DashboardProductEditComponent } from './dashboard-product-edit/dashboard-product-edit.component';
+import { CategoryLoadAllService } from 'src/app/services/category/category-load-all.service';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'new',
+    resolve: {categories: CategoryLoadAllService},
     component: DashboardProductNewComponent
   },
   {

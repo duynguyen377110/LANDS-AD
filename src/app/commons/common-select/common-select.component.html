@@ -4,9 +4,11 @@
         <mat-select
             (blur)="onBlurHandler()"
             [formControl]="formControl">
-          <mat-option>Clear</mat-option>
-          <mat-option value="valid">Valid option</mat-option>
-          <mat-option value="invalid">Invalid option</mat-option>
+          <mat-option>{{defaultOpt}}</mat-option>
+          <mat-option
+            *ngFor="let item of datas"
+            [value]="item?.id">{{item.title}}</mat-option>
+          <!-- <mat-option value="invalid">Invalid option</mat-option> -->
         </mat-select>
         <mat-error *ngIf="error">{{error.message}}</mat-error>
       </mat-form-field>

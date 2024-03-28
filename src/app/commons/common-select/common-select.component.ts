@@ -8,7 +8,8 @@ import { FormControl } from '@angular/forms';
 })
 export class CommonSelectComponent implements OnInit {
 
-  @Input('data') data: Array<any> = [];
+  @Input('datas') datas: Array<any> = [];
+  @Input('defaultOpt') defaultOpt: string = '';
   @Input('formControl') formControl: FormControl = new FormControl('', []);
   @Input('label') label: string = '';
   @Input('id') id: string = '';
