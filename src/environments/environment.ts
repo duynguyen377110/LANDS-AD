@@ -12,5 +12,10 @@ export const environment = {
                 amount: "category/amount",
             }
         },
+        product: {
+            admin: {
+                root: 'product'
+            }
+        }
     }
 };
