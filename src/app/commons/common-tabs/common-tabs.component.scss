@@ -6,13 +6,13 @@
         .tab-list {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
             list-style-type: none;
             margin: 0px;
             padding: 0px;
             li {
                 a {
                     background-color: #ededed;
+                    border-bottom: 1px solid #dddddd;
                     color: #222222;
                     display: flex;
                     padding: 1.5rem;
