@@ -33,7 +33,11 @@ export class DashboardUtilTabComponent implements OnInit, OnDestroy {
 
       switch(points[0]) {
         case 'category':
-          this.title = 'Danh mục'
+          this.title = 'Danh mục';
+          break
+
+        case 'product':
+          this.title= 'Sản phẩm';
           break
       }
       this.buttonNewShow = true;
@@ -55,6 +59,10 @@ export class DashboardUtilTabComponent implements OnInit, OnDestroy {
     switch(this.currentPoint) {
       case '/category':
         this.router.navigate(['/category/new']);
+        break
+
+      case '/product':
+        this.router.navigate(['/product/new']);
         break
     }
   }
