@@ -13,6 +13,7 @@ export class CommonTableComponent {
   @Output('emitUpdate') emitUpdate: EventEmitter<any> = new EventEmitter<any>();
 
   columnsCategory: Array<string> = ['STT', 'Tiêu đề', 'Ảnh', 'Chức năng'];
+  columnsProduct: Array<string> = ['STT', 'Chủ sở hữu', 'Ảnh', 'Diện tích', 'Giá', 'Chức năng'];
 
   onDeleteHandler(event: any) {
     this.emitDelete.emit(event);

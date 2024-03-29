@@ -1,10 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { HttpService } from 'src/app/services/http/http.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard-product',
   templateUrl: './dashboard-product.component.html',
   styleUrls: ['./dashboard-product.component.scss']
 })
-export class DashboardProductComponent {
+export class DashboardProductComponent implements OnInit, OnDestroy {
+  urlDestroy: string = `${environment.api.url}${environment.api.product.admin.root}`;
+  products: Array<any> = [];
+  loadDataSub: Subscription = new Subscription();
+
+  constructor(
+    private route: ActivatedRoute,
+    private httpService: HttpService
+  ) { }
+
+  ngOnInit(): void {
+    this.loadDataSub = this.route.data.subscribe((data: any) => {
+      console.log(data.products);
+      let { products } = data.products;
+      this.products = products;
+    })
+  }
+
+  onDeleteHander(event: any) {
+    this.httpService.delete(this.urlDestroy, {id: event}).subscribe((res) => {
+      let { status } = res;
+      if(status) {
+        window.location.reload();
+      }
+    })
+  }
+
+  onUpdateHandler(event: any) {
+
+  }
+
+  ngOnDestroy(): void {
+    this.loadDataSub.unsubscribe();
+  }
 
 }

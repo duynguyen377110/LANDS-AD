@@ -1,4 +1,12 @@
 <div class="dashboard-product-component">
+    <app-common-table
+        *ngIf="products.length > 0"
+        [type]="'product'"
+        [list]="products"
+        (emitDelete)="onDeleteHander($event)"
+        (emitUpdate)="onUpdateHandler($event)"></app-common-table>
+
     <app-common-bland
+        *ngIf="products.length <= 0"
         [desc]="'Product bland'"></app-common-bland>
 </div>

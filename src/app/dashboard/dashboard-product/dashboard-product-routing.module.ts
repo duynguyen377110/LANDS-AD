@@ -4,10 +4,12 @@ import { DashboardProductComponent } from './dashboard-product/dashboard-product
 import { DashboardProductNewComponent } from './dashboard-product-new/dashboard-product-new.component';
 import { DashboardProductEditComponent } from './dashboard-product-edit/dashboard-product-edit.component';
 import { CategoryLoadAllService } from 'src/app/services/category/category-load-all.service';
+import { ProductLoadAllService } from 'src/app/services/product/product-load-all.service';
 
 const routes: Routes = [
   {
     path: '',
+    resolve: {products: ProductLoadAllService},
     component: DashboardProductComponent
   },
   {
