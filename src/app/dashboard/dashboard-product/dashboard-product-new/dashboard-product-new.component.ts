@@ -39,7 +39,6 @@ export class DashboardProductNewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dataSub = this.route.data.subscribe((data: any) => {
-      console.log(data);
       let { categories } = data.categories;
       this.selectCategories = categories.map((category: any) => {
         return {

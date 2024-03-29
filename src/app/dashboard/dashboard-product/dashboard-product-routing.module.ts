@@ -5,6 +5,7 @@ import { DashboardProductNewComponent } from './dashboard-product-new/dashboard-
 import { DashboardProductEditComponent } from './dashboard-product-edit/dashboard-product-edit.component';
 import { CategoryLoadAllService } from 'src/app/services/category/category-load-all.service';
 import { ProductLoadAllService } from 'src/app/services/product/product-load-all.service';
+import { ProductLoadSingleService } from 'src/app/services/product/product-load-single.service';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
+    resolve: {
+      categories: CategoryLoadAllService,
+      product: ProductLoadSingleService
+    },
     component: DashboardProductEditComponent
   }
 ];
