@@ -1,4 +1,6 @@
 <div class="common-table-component">
+
+    <!-- CATEGORY -->
     <table
         *ngIf="type === 'category'"
         class="table table-hover">
@@ -28,4 +30,38 @@
           </tr>
         </tbody>
       </table>
+
+      <!-- PRODUCT -->
+      <table
+        *ngIf="type === 'product'"
+        class="table table-hover">
+        <thead>
+          <tr>
+            <th *ngFor="let elm of columnsProduct">{{elm}}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let product of list">
+            <th scope="row">1</th>
+            <td>{{product.productOwner}}</td>
+            <td><img class="table-thumb" [src]="product.thumbs[0]" alt="thumb" /></td>
+            <td>{{product.landArea}}</td>
+            <td>{{product.price.$numberDecimal}}</td>
+            <td class="table-method">
+                <app-common-button
+                    [id]="product._id"
+                    [title]="'Xoá'"
+                    (emitClick)="onDeleteHandler($event)"></app-common-button>
+
+                <app-common-button
+                    [kind]="'danger'"
+                    [id]="product._id"
+                    [title]="'sửa'"
+                    (emitClick)="onEditHandler($event)"></app-common-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
 </div>

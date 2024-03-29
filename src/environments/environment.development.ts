@@ -15,6 +15,9 @@ export const environment = {
         product: {
             admin: {
                 root: 'product'
+            },
+            common: {
+                all: 'product/all',
             }
         }
     }
