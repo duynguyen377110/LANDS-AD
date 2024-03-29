@@ -17,6 +17,7 @@ export const environment = {
                 root: 'product'
             },
             common: {
+                root: 'product',
                 all: 'product/all',
             }
         }

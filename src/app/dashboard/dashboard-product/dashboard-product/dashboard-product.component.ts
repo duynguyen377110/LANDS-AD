@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpService } from 'src/app/services/http/http.service';
 import { environment } from 'src/environments/environment';
@@ -15,6 +15,7 @@ export class DashboardProductComponent implements OnInit, OnDestroy {
   loadDataSub: Subscription = new Subscription();
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private httpService: HttpService
   ) { }
@@ -37,7 +38,7 @@ export class DashboardProductComponent implements OnInit, OnDestroy {
   }
 
   onUpdateHandler(event: any) {
-
+    this.router.navigate(['product/edit', event]);
   }
 
   ngOnDestroy(): void {
