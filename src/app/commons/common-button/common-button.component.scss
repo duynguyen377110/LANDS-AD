@@ -4,5 +4,8 @@
     }
     &.full-size {
         width: 100%;
+        button.mdc-button {
+            width: 100%!important;
+        }
     }
 }

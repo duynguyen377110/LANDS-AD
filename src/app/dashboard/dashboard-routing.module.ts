@@ -13,6 +13,14 @@ const routes: Routes = [
         component: DashboardMainComponent
       },
       {
+        path: 'role',
+        loadChildren: () => import("./dashboard-role/dashboard-role.module").then((m) => m.DashboardRoleModule),
+      },
+      {
+        path: 'user',
+        loadChildren: () => import("./dashboard-user/dashboard-user.module").then((m) => m.DashboardUserModule),
+      },
+      {
         path: 'category',
         loadChildren: () => import("./dashboard-category/dashboard-category.module").then((m) => m.DashboardCategoryModule)
       },
