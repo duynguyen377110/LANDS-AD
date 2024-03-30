@@ -1,1 +1,12 @@
-<p>dashboard-role works!</p>
+<div clas="dáhboảd-role-component">
+    <app-common-table
+        *ngIf="roles.length > 0"
+        [type]="'role'"
+        [list]="roles"
+        (emitDelete)="onDeleteHander($event)"
+        (emitUpdate)="onUpdateHandler($event)"></app-common-table>
+
+    <app-common-bland
+        *ngIf="roles.length === 0"
+        [desc]="'Category bland'"></app-common-bland>
+</div>

@@ -5,6 +5,9 @@ export const environment = {
         role: {
             admin: {
                 root: 'role'
+            },
+            common: {
+                root: 'role/all'
             }
         },
         category: {

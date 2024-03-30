@@ -12,6 +12,7 @@ export class CommonTableComponent {
   @Output('emitDelete') emitDelete: EventEmitter<any> = new EventEmitter<any>();
   @Output('emitUpdate') emitUpdate: EventEmitter<any> = new EventEmitter<any>();
 
+  columnsRole: Array<string> = ['STT', 'Phân quyền', 'Người dùng', 'Chức năng'];
   columnsCategory: Array<string> = ['STT', 'Tiêu đề', 'Ảnh', 'Chức năng'];
   columnsProduct: Array<string> = ['STT', 'Chủ sở hữu', 'Ảnh', 'Diện tích', 'Giá', 'Chức năng'];
 
