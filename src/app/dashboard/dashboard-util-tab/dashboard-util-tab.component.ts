@@ -32,6 +32,14 @@ export class DashboardUtilTabComponent implements OnInit, OnDestroy {
       let points = this.currentPoint.split('/').filter((point) => point);
 
       switch(points[0]) {
+        case 'role':
+          this.title = 'Phân quyền';
+          break
+
+        case 'user':
+          this.title = 'Người dùng';
+          break
+
         case 'category':
           this.title = 'Danh mục';
           break
@@ -57,6 +65,14 @@ export class DashboardUtilTabComponent implements OnInit, OnDestroy {
 
   onRedirectHandler(event: any) {
     switch(this.currentPoint) {
+      case '/role':
+        this.router.navigate(['/role/new']);
+        break
+
+      case '/user':
+        this.router.navigate(['/user/new']);
+        break
+
       case '/category':
         this.router.navigate(['/category/new']);
         break

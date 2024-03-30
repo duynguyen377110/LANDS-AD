@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 
 import { loaderReducer } from './store/store-loader/store-loader-reducer';
+import { authReducer } from './store/store-auth/store-auth-reducer';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { loaderReducer } from './store/store-loader/store-loader-reducer';
     CommonsModule,
     HttpClientModule,
     StoreModule.forRoot({
-      loader: loaderReducer
+      loader: loaderReducer,
+      auth: authReducer
     }, {})
   ],
   providers: [],

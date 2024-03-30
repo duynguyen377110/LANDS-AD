@@ -1,0 +1,33 @@
+<div class="form-container">
+    <h2></h2>
+    <form [formGroup]="formSignin" (submit)="onSubmitHandler($event)">
+        <div class="row">
+            <div class="col-12">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="email"
+                    [label]="'E-mail'"
+                    [id]="'auth-email'"
+                    [submit]="submit"
+                    [type]="'text'"></app-commons-input>
+            </div>
+
+            <div class="col-12">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="password"
+                    [label]="'Mật khẩu'"
+                    [id]="'auth-password'"
+                    [submit]="submit"
+                    [type]="'password'"></app-commons-input>
+            </div>
+    
+            <div class="col-12">
+                <app-common-button
+                    [type]="'submit'"
+                    [size]="'full'"
+                    [title]="titleButton"></app-common-button>
+            </div>
+        </div>
+    </form>
+</div>

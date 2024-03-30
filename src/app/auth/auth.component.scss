@@ -1,0 +1,14 @@
+.auth-component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+
+    .auth-wrapper {
+        background-color: var(--bgFirst);
+        border-radius: 5px;
+        padding: 15px;
+        width: 50%;
+    }
+}
