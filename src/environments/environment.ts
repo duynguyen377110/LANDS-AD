@@ -2,6 +2,11 @@ export const environment = {
     api: {
         url: "https://lands-be.onrender.com/api/v1/admin/",
         urlCommon: "https://lands-be.onrender.com/api/v1/common/",
+        role: {
+            admin: {
+                root: 'role'
+            }
+        },
         category: {
             admin: {
                 root: 'category',

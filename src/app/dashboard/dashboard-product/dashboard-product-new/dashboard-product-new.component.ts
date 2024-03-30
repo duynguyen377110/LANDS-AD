@@ -70,7 +70,6 @@ export class DashboardProductNewComponent implements OnInit, OnDestroy {
       this.submit = false;
 
       let formData = new FormData();
-      console.log(this.formProduct);
 
       formData.append('productOwner', this.formProduct.value.productOwner);
       formData.append('address', this.formProduct.value.address);
