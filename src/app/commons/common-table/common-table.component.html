@@ -1,5 +1,36 @@
 <div class="common-table-component">
 
+  <!-- ROLE -->
+  <table
+    *ngIf="type === 'role'"
+    class="table table-hover">
+    <thead>
+      <tr>
+        <th *ngFor="let elm of columnsRole">{{elm}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let cal of list">
+        <th scope="row">1</th>
+        <td>{{cal.title}}</td>
+        <td>{{cal.users.length}}</td>
+        <td class="table-method">
+            <app-common-button
+                [id]="cal._id"
+                [title]="'Xoá'"
+                (emitClick)="onDeleteHandler($event)"></app-common-button>
+
+            <app-common-button
+                [kind]="'danger'"
+                [id]="cal._id"
+                [title]="'sửa'"
+                (emitClick)="onEditHandler($event)"></app-common-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
     <!-- CATEGORY -->
     <table
         *ngIf="type === 'category'"
