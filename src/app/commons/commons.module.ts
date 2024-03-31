@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatIconModule} from '@angular/material/icon';
 
 import { CommonsRoutingModule } from './commons-routing.module';
 import { CommonsInputComponent } from './commons-input/commons-input.component';
@@ -42,6 +43,7 @@ import { CommonTextareaComponent } from './common-textarea/common-textarea.compo
     MatTableModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+    MatIconModule,
     ReactiveFormsModule
   ],
   exports: [

@@ -1,5 +1,19 @@
 .common-header-component {
     border-bottom: 1px solid #000000;
+    display: flex;
+    align-items: center;
     height: 60px;
     width: 100%;
+    .header-signout {
+        display: flex;
+        margin-left: auto;
+        .header-user-email {
+            font-size: 15px;
+            margin-right: 10px;
+            margin-bottom: 0px;
+            overflow-x: clip;
+            text-overflow: ellipsis;
+            width: 110px;
+        }
+    }
 }
