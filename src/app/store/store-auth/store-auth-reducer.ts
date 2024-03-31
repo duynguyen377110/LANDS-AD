@@ -14,7 +14,19 @@ const initialState = {
 export const authReducer = createReducer(
     initialState,
     on(authLogin, (state: any, action: any) => {
-        return state;
+        
+        let {userId, accessToken, address, email, phone, refreshToken} = action.metadata;
+        localStorage.setItem('user', JSON.stringify({accessToken, address, email, id: userId, phone, refreshToken,}));
+
+        return {
+            ...state,
+            id: userId,
+            address,
+            email,
+            phone,
+            accessToken,
+            refreshToken,
+        };
     }),
     on(authLogout, (state: any) => {
         return state;

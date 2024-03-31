@@ -2,6 +2,9 @@ export const environment = {
     api: {
         url: "http://localhost:8080/api/v1/admin/",
         urlCommon: "http://localhost:8080/api/v1/common/",
+        access: {
+            signin: 'access/signin'
+        },
         role: {
             admin: {
                 root: 'role'
