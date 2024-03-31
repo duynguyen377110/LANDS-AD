@@ -31,6 +31,38 @@
     </tbody>
   </table>
 
+  <!-- USER -->
+  <table
+    *ngIf="type === 'user'"
+    class="table table-hover">
+    <thead>
+      <tr>
+        <th *ngFor="let elm of columnsUser">{{elm}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let cal of list">
+        <th scope="row">1</th>
+        <td>{{cal.fullName}}</td>
+        <td>{{cal.phone}}</td>
+        <td>{{cal.role.title}}</td>
+        <td class="table-method">
+            <app-common-button
+                [id]="cal._id"
+                [title]="'Xoá'"
+                (emitClick)="onDeleteHandler($event)"></app-common-button>
+
+            <app-common-button
+                [kind]="'danger'"
+                [id]="cal._id"
+                [title]="'sửa'"
+                (emitClick)="onEditHandler($event)"></app-common-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
     <!-- CATEGORY -->
     <table
         *ngIf="type === 'category'"
