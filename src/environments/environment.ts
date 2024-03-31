@@ -3,7 +3,8 @@ export const environment = {
         url: "https://lands-be.onrender.com/api/v1/admin/",
         urlCommon: "https://lands-be.onrender.com/api/v1/common/",
         access: {
-            signin: 'access/signin'
+            signin: 'access/signin',
+            signout: 'access/signout'
         },
         role: {
             admin: {

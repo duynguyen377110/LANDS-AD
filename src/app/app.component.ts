@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
+import { authReload } from "./store/store-auth/store-auth-action";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,12 +20,13 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.storeSub = this.store.select('auth').subscribe((auth: any) => {
-      let { email, accessToken } = auth.infor;
-      if(!email && !accessToken) {
-        this.router.navigate(['/auth']);
-      }
-    })
+    let user = localStorage.getItem('user');
+    if(!user) {
+      this.router.navigate(['/auth']);
+    } else {
+      this.store.dispatch(authReload());
+    }
+    
   }
 
   ngOnDestroy(): void {

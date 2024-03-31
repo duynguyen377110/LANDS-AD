@@ -3,7 +3,8 @@ export const environment = {
         url: "http://localhost:8080/api/v1/admin/",
         urlCommon: "http://localhost:8080/api/v1/common/",
         access: {
-            signin: 'access/signin'
+            signin: 'access/signin',
+            signout: 'access/signout'
         },
         role: {
             admin: {

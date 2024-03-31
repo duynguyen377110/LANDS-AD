@@ -2,16 +2,19 @@
     <div class="tab-container">
         <ul class="tab-list">
             <li>
-                <a [routerLink]="['/role']" >Role</a>
+                <a [routerLink]="['/role']" >Phân quyền</a>
             </li>
             <li>
-                <a [routerLink]="['/user']" >User</a>
+                <a [routerLink]="['/user']" >Người dùng</a>
             </li>
             <li>
-                <a [routerLink]="['/category']" >Category</a>
+                <a [routerLink]="['/category']" >Danh mục</a>
             </li>
             <li>
-                <a [routerLink]="['/product']" >Product</a>
+                <a [routerLink]="['/product']" >Sản phẩm</a>
+            </li>
+            <li>
+                <a (click)="onUserSignout()" class="btn-signout">Đăng xuất</a>
             </li>
         </ul>
     </div>
