@@ -7,7 +7,8 @@ export const environment = {
                 root: 'role'
             },
             common: {
-                root: 'role/all'
+                root: 'role',
+                all: 'role/all'
             }
         },
         category: {

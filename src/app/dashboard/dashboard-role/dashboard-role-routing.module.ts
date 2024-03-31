@@ -4,6 +4,7 @@ import { DashboardRoleComponent } from './dashboard-role/dashboard-role.componen
 import { DashboardRoleNewComponent } from './dashboard-role-new/dashboard-role-new.component';
 import { DashboardRoleEditComponent } from './dashboard-role-edit/dashboard-role-edit.component';
 import { RoleLoadAllService } from 'src/app/services/role/role-load-all.service';
+import { RoleLoadSingleService } from 'src/app/services/role/role-load-single.service';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
+    resolve: {role: RoleLoadSingleService},
     component: DashboardRoleEditComponent
   }
 ];
