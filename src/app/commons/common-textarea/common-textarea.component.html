@@ -1,0 +1,11 @@
+<div class="common-textarea-component">
+    <mat-form-field class="example-full-width">
+        <mat-label>{{label}}</mat-label>
+        <textarea
+            matInput
+            [formControl]="formControl"
+            placeholder="Ex. It makes me feel..."
+            (blur)="onBlurHandler()"></textarea>
+        <mat-error *ngIf="error">{{error.message}}</mat-error>
+    </mat-form-field>
+</div>

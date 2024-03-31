@@ -11,6 +11,11 @@ export const environment = {
                 all: 'role/all'
             }
         },
+        user: {
+            admin: {
+                root: 'user',
+            }
+        },
         category: {
             admin: {
                 root: 'category',

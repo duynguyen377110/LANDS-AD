@@ -42,7 +42,7 @@ export class CommonSelectComponent implements OnInit {
   }
 
   onBlurHandler(): void {
-    this.renderMessage()
+    this.renderMessage();
   }
 
 }
