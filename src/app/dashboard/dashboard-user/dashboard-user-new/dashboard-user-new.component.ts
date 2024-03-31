@@ -16,6 +16,7 @@ export class DashboardUserNewComponent implements OnInit, OnDestroy {
   roles: Array<any> = [];
   titleButton: string = 'Tạo mới tài khoản';
   submit: boolean = false;
+  fieldPasswordOptional: boolean = true;
 
   userForm: FormGroup = new FormGroup({});
   fullName: FormControl = new FormControl('', [this.validationService.require()]);
@@ -25,7 +26,7 @@ export class DashboardUserNewComponent implements OnInit, OnDestroy {
   address: FormControl = new FormControl('', [this.validationService.require()]);
   role: FormControl = new FormControl('', [this.validationService.require()]);
 
-  dataRolesSub: Subscription = new Subscription();
+  dataSub: Subscription = new Subscription();
 
   constructor(
     public fb: FormBuilder,
@@ -36,7 +37,7 @@ export class DashboardUserNewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.dataRolesSub = this.route.data.subscribe((data: any) => {
+    this.dataSub = this.route.data.subscribe((data: any) => {
       let { roles } = data.roles;
       this.roles = roles;
 
@@ -80,7 +81,7 @@ export class DashboardUserNewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dataRolesSub.unsubscribe();
+    this.dataSub.unsubscribe();
   }
 
 }

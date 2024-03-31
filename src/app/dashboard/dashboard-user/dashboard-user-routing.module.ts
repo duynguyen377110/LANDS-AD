@@ -5,6 +5,7 @@ import { DashboardUserNewComponent } from './dashboard-user-new/dashboard-user-n
 import { DashboardUserEditComponent } from './dashboard-user-edit/dashboard-user-edit.component';
 import { RoleLoadAllService } from 'src/app/services/role/role-load-all.service';
 import { UserLoadAllService } from 'src/app/services/user/user-load-all.service';
+import { UserLoadSingleService } from 'src/app/services/user/user-load-single.service';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
+    resolve: {
+      user: UserLoadSingleService,
+      roles: RoleLoadAllService
+    },
     component: DashboardUserEditComponent
   }
 ];
