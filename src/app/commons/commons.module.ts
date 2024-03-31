@@ -18,6 +18,7 @@ import { CommonTabsComponent } from './common-tabs/common-tabs.component';
 import { CommonInputFileComponent } from './common-input-file/common-input-file.component';
 import { CommonBlandComponent } from './common-bland/common-bland.component';
 import { CommonLoaderComponent } from './common-loader/common-loader.component';
+import { CommonTextareaComponent } from './common-textarea/common-textarea.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CommonLoaderComponent } from './common-loader/common-loader.component';
     CommonTabsComponent,
     CommonInputFileComponent,
     CommonBlandComponent,
-    CommonLoaderComponent
+    CommonLoaderComponent,
+    CommonTextareaComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { CommonLoaderComponent } from './common-loader/common-loader.component';
     CommonInputFileComponent,
     CommonBlandComponent,
     CommonLoaderComponent,
+    CommonTextareaComponent,
   ]
 })
 export class CommonsModule { }

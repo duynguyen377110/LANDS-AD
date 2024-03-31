@@ -1,1 +1,72 @@
-<p>dashboard-user-new works!</p>
+<div class="dashboard-role-new-component">
+    <form [formGroup]="userForm" (submit)="onSubmitHandler($event)">
+        <div class="row">
+
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="fullName"
+                    [label]="'Họ và tên'"
+                    [id]="'user-full-name'"
+                    [submit]="submit"
+                    [type]="'text'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="email"
+                    [label]="'E-mail'"
+                    [id]="'user-email'"
+                    [submit]="submit"
+                    [type]="'email'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="password"
+                    [label]="'Mật khẩu'"
+                    [id]="'user-password'"
+                    [submit]="submit"
+                    [type]="'password'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="phone"
+                    [label]="'Số điện thoại'"
+                    [id]="'user-phone'"
+                    [submit]="submit"
+                    [type]="'phone'"></app-commons-input>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-common-textarea
+                    ngDefaultControl
+                    [formControl]="address"
+                    [label]="'Địa chỉ'"
+                    [id]="'user-address'"
+                    [submit]="submit"></app-common-textarea>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <app-common-select
+                    ngDefaultControl
+                    [datas]="roles"
+                    [defaultOpt]="'Chọn phân quyền cho tài khoản'"
+                    [formControl]="role"
+                    [label]="'Phân quyền'"
+                    [id]="'user-roles'"
+                    [submit]="submit"></app-common-select>
+            </div>
+
+            <div class="col-12 mt-5">
+                <app-common-button
+                    [type]="'submit'"
+                    [title]="titleButton"></app-common-button>
+            </div>
+        </div>
+    </form>
+</div>
