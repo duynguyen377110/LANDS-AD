@@ -1,1 +1,12 @@
-<p>dashboard-user works!</p>
+<div clas="dashboard-user-component">
+    <app-common-table
+        *ngIf="users.length > 0"
+        [type]="'user'"
+        [list]="users"
+        (emitDelete)="onDeleteHander($event)"
+        (emitUpdate)="onUpdateHandler($event)"></app-common-table>
+
+    <app-common-bland
+        *ngIf="users.length === 0"
+        [desc]="'Category bland'"></app-common-bland>
+</div>

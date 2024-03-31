@@ -14,6 +14,10 @@ export const environment = {
         user: {
             admin: {
                 root: 'user',
+            },
+            common: {
+                root: 'user',
+                all: 'user/all'
             }
         },
         category: {
