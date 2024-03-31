@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpService } from 'src/app/services/http/http.service';
 import { environment } from 'src/environments/environment';
@@ -16,6 +16,7 @@ export class DashboardRoleComponent implements OnInit, OnDestroy {
   destroyRoleSub: Subscription = new Subscription();
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private httpService: HttpService
   ) { }
@@ -23,7 +24,6 @@ export class DashboardRoleComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dataSub = this.route.data.subscribe((data: any) => {
       let { roles } = data.roles;
-      console.log(roles);
       this.roles = roles;
     })
   }
@@ -39,7 +39,7 @@ export class DashboardRoleComponent implements OnInit, OnDestroy {
   }
 
   onUpdateHandler(event: any) {
-    // this.router.navigate(['/category/edit', event]);
+    this.router.navigate(['/role/edit', event]);
   }
 
   ngOnDestroy(): void {
