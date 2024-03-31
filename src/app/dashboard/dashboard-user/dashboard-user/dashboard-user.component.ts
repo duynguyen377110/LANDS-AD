@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpService } from 'src/app/services/http/http.service';
 import { environment } from 'src/environments/environment';
@@ -16,6 +16,7 @@ export class DashboardUserComponent implements OnInit, OnDestroy {
   destroyUserSub: Subscription = new Subscription();
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private httpService: HttpService
   ) { }
@@ -38,7 +39,7 @@ export class DashboardUserComponent implements OnInit, OnDestroy {
   }
 
   onUpdateHandler(event: any) {
-
+    this.router.navigate(['user/edit', event]);
   }
 
   ngOnDestroy(): void {
