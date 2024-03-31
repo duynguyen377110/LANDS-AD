@@ -1,7 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { HttpService } from 'src/app/services/http/http.service';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
+import { environment } from 'src/environments/environment';
+
+import { authLogin } from "../../store/store-auth/store-auth-action";
 
 @Component({
   selector: 'app-auth-login',
@@ -10,17 +16,23 @@ import { ValidationsService } from 'src/app/services/validations/validations.ser
 })
 export class AuthLoginComponent implements OnInit, OnDestroy{
   
-  formSignin: FormGroup = new FormGroup({});
+  url: string = `${environment.api.url}${environment.api.access.signin}`;
+
+  signinForm: FormGroup = new FormGroup({});
   email: FormControl = new FormControl('', [this.serviceValidation.require(), this.serviceValidation.email()]);
   password: FormControl = new FormControl('', [this.serviceValidation.require(), this.serviceValidation.password()]);
 
   submit: boolean = false;
   titleButton: string = 'Đăng nhập';
+  signinSub: Subscription = new Subscription();
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private serviceValidation: ValidationsService,
+    private httpService: HttpService,
+    private store: Store<{auth: any}>
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +40,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy{
   }
 
   createForm(): void {
-    this.formSignin = this.fb.group({
+    this.signinForm = this.fb.group({
       email: this.email,
       password: this.password
     })
@@ -36,11 +48,23 @@ export class AuthLoginComponent implements OnInit, OnDestroy{
 
   onSubmitHandler = (event: any) => {
     event.preventDefault();
-    
+
+    if(this.signinForm.status !== 'INVALID') {
+      console.log(this.url);
+      console.log(this.signinForm.value);
+
+      this.signinSub = this.httpService.post(this.url, this.signinForm.value).subscribe((res: any) => {
+        let { status, metadata }: any = res;
+        if(status) {
+          this.store.dispatch(authLogin({metadata}));
+          this.router.navigate(['..'], {relativeTo: this.route});
+        }
+      })
+    }
   }
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    this.signinSub.unsubscribe();
   }
 
 }
