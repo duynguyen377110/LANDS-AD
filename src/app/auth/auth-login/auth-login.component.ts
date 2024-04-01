@@ -50,9 +50,6 @@ export class AuthLoginComponent implements OnInit, OnDestroy{
     event.preventDefault();
 
     if(this.signinForm.status !== 'INVALID') {
-      console.log(this.url);
-      console.log(this.signinForm.value);
-
       this.signinSub = this.httpService.post(this.url, this.signinForm.value).subscribe((res: any) => {
         let { status, metadata }: any = res;
         if(status) {
