@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
 import { HttpSendFileService } from 'src/app/services/http-send-file/http-send-file.service';
 import { environment } from 'src/environments/environment';
+import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
   selector: 'app-dashboard-category-edit',
@@ -21,8 +22,9 @@ export class DashboardCategoryEditComponent extends DashboardCategoryNewComponen
     route: ActivatedRoute,
     inputVali: ValidationsService,
     httpSendFile: HttpSendFileService,
+    httpService: HttpService,
   ) {
-    super(fb, router, route, inputVali, httpSendFile)
+    super(fb, router, route, inputVali, httpSendFile, httpService)
   }
 
   override ngOnInit(): void {
