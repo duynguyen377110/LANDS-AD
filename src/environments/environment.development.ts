@@ -28,9 +28,6 @@ export const environment = {
         category: {
             admin: {
                 root: 'category',
-                updateCategory: 'category_update',
-                destroyCategory: 'category_delete',
-                destroyCategoryThumbs: 'category'
             },
             common: {
                 root: 'category',
@@ -45,6 +42,18 @@ export const environment = {
             common: {
                 root: 'product',
                 all: 'product/all',
+            }
+        },
+        server_be: {
+            category: {
+                uploadThumb: "category"
+            }
+        },
+        server_product: {
+            category: {
+                create: 'category',
+                update: "category_update",
+                destroy: "category_delete"
             }
         }
     }
