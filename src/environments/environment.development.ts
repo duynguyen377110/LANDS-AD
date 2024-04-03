@@ -47,6 +47,9 @@ export const environment = {
         server_be: {
             category: {
                 uploadThumb: "category"
+            },
+            product: {
+                uploadThumb: "product"
             }
         },
         server_product: {
@@ -54,6 +57,11 @@ export const environment = {
                 create: 'category',
                 update: "category_update",
                 destroy: "category_delete"
+            },
+            product: {
+                create: "product",
+                update: "product_update",
+                destroy: "product_delete"
             }
         }
     }
