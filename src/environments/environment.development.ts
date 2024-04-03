@@ -28,6 +28,8 @@ export const environment = {
         category: {
             admin: {
                 root: 'category',
+                destroyCategory: 'category_delete',
+                destroyCategoryThumbs: 'category'
             },
             common: {
                 root: 'category',
