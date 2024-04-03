@@ -10,9 +10,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard-product.component.scss']
 })
 export class DashboardProductComponent implements OnInit, OnDestroy {
-  urlDestroy: string = `${environment.api.url}${environment.api.product.admin.root}`;
+  urlDestroy: string = `${environment.api.urlProduct}${environment.api.server_product.product.destroy}`;
+  urlThumbs: string = `${environment.api.url}${environment.api.server_be.product.uploadThumb}`;
+
   products: Array<any> = [];
   loadDataSub: Subscription = new Subscription();
+  destroyProductSub: Subscription = new Subscription();
+  destroyProductThumb: Subscription = new Subscription();
 
   constructor(
     private router: Router,
@@ -22,17 +26,22 @@ export class DashboardProductComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadDataSub = this.route.data.subscribe((data: any) => {
-      console.log(data.products);
       let { products } = data.products;
       this.products = products;
     })
   }
 
   onDeleteHander(event: any) {
-    this.httpService.delete(this.urlDestroy, {id: event}).subscribe((res) => {
-      let { status } = res;
+    this.destroyProductSub = this.httpService.delete(this.urlDestroy, {id: event})
+    .subscribe((res) => {
+      let { status, thumbs } = res;
       if(status) {
-        window.location.reload();
+        this.destroyProductThumb = this.httpService.delete(this.urlThumbs, {thumbs}).subscribe((res: any) => {
+          let { status } = res;
+          if(status) {
+            window.location.reload();
+          }
+        })
       }
     })
   }
@@ -43,6 +52,8 @@ export class DashboardProductComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.loadDataSub.unsubscribe();
+    this.destroyProductSub.unsubscribe();
+    this.destroyProductThumb.unsubscribe();
   }
 
 }
