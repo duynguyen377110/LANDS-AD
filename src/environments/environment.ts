@@ -28,6 +28,7 @@ export const environment = {
         category: {
             admin: {
                 root: 'category',
+                updateCategory: 'category_update',
                 destroyCategory: 'category_delete',
                 destroyCategoryThumbs: 'category',
             },
