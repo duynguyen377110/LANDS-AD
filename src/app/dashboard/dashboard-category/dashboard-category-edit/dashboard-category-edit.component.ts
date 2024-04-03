@@ -14,6 +14,7 @@ import { HttpService } from 'src/app/services/http/http.service';
 })
 export class DashboardCategoryEditComponent extends DashboardCategoryNewComponent implements OnInit {
   override url: string = `${environment.api.url}${environment.api.category.admin.root}`;
+  urlUpdateCategory: string = `${environment.api.urlProduct}${environment.api.category.admin.updateCategory}`;
   override titleButton: string = 'Edit category';
 
   constructor(
@@ -50,27 +51,31 @@ export class DashboardCategoryEditComponent extends DashboardCategoryNewComponen
       let { id } = this.route.snapshot.params;
 
       let formCategoryData = new FormData();
-      formCategoryData.append('id', id);
-      formCategoryData.append('title', this.formCategory.value.title);
-      formCategoryData.append('description', this.formCategory.value.description);
-
-
       let inputPhotos: any = this.formCategory.controls['photos'];
+      let photos: Array<string> = [];
 
       if(inputPhotos.value.length) {
           for(let file of inputPhotos.value) {
             formCategoryData.append('photos', file);
           }
+
+          let { thumbs } = await this.httpSendFile.patch(this.urlUploadThumb, formCategoryData);
+          photos = thumbs;
       }
 
-      let res = await this.httpSendFile.patch(this.url, formCategoryData);
-      console.log(res);
-      let { status } = res;
-
-      if(status) {
-        this.router.navigate(['../..'], {relativeTo: this.route});
+      let payload = {
+        id,
+        title: this.formCategory.value.title,
+        description: this.formCategory.value.description,
+        thumbs: photos
       }
-      
+
+      this.httpService.patch(this.urlUpdateCategory, payload).subscribe((res: any) => {
+        let { status } = res;
+        if(status) {
+          this.router.navigate(['../..'], {relativeTo: this.route});
+        }
+      })
     }
   }
 
