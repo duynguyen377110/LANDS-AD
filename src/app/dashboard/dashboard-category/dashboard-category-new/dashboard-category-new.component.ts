@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard-category-new.component.scss']
 })
 export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
-  url: string = `${environment.api.urlProduct}${environment.api.category.admin.root}`;
-  urlUploadThumb: string = `${environment.api.url}${environment.api.category.admin.root}`;
+  url: string = `${environment.api.urlProduct}${environment.api.server_product.category.create}`;
+  urlUploadThumb: string = `${environment.api.url}${environment.api.server_be.category.uploadThumb}`;
 
   formCategory: FormGroup = new FormGroup({});
   title: FormControl = new FormControl('', [this.inputVali.require()]);

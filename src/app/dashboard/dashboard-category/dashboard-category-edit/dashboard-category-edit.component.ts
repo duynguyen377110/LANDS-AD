@@ -13,8 +13,7 @@ import { HttpService } from 'src/app/services/http/http.service';
   styleUrls: ['./dashboard-category-edit.component.scss', '../dashboard-category-new/dashboard-category-new.component.scss']
 })
 export class DashboardCategoryEditComponent extends DashboardCategoryNewComponent implements OnInit {
-  override url: string = `${environment.api.url}${environment.api.category.admin.root}`;
-  urlUpdateCategory: string = `${environment.api.urlProduct}${environment.api.category.admin.updateCategory}`;
+  override url: string = `${environment.api.urlProduct}${environment.api.server_product.category.update}`;
   override titleButton: string = 'Edit category';
 
   constructor(
@@ -70,7 +69,7 @@ export class DashboardCategoryEditComponent extends DashboardCategoryNewComponen
         thumbs: photos
       }
 
-      this.httpService.patch(this.urlUpdateCategory, payload).subscribe((res: any) => {
+      this.httpService.patch(this.url, payload).subscribe((res: any) => {
         let { status } = res;
         if(status) {
           this.router.navigate(['../..'], {relativeTo: this.route});
