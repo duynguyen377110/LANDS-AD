@@ -6,6 +6,7 @@ import { ValidationsService } from 'src/app/services/validations/validations.ser
 import { HttpSendFileService } from 'src/app/services/http-send-file/http-send-file.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
   selector: 'app-dashboard-product-edit',
@@ -22,9 +23,10 @@ export class DashboardProductEditComponent extends DashboardProductNewComponent 
     router: Router,
     route: ActivatedRoute,
     serviceValidation: ValidationsService,
-    httpSendFile: HttpSendFileService
+    httpSendFile: HttpSendFileService,
+    httpService: HttpService
   ) {
-    super(fb, router, route, serviceValidation, httpSendFile);
+    super(fb, router, route, serviceValidation, httpSendFile, httpService);
   }
 
   override ngOnInit(): void {
