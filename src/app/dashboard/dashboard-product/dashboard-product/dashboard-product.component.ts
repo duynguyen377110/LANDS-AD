@@ -35,6 +35,7 @@ export class DashboardProductComponent implements OnInit, OnDestroy {
     this.destroyProductSub = this.httpService.delete(this.urlDestroy, {id: event})
     .subscribe((res) => {
       let { status, thumbs } = res;
+      
       if(status) {
         this.destroyProductThumb = this.httpService.delete(this.urlThumbs, {thumbs}).subscribe((res: any) => {
           let { status } = res;
