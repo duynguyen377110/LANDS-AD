@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class DashboardCategoryComponent implements OnInit,OnDestroy {
 
   url: string = `${environment.api.urlCommon}${environment.api.category.common.all}`;
-  urlDestroy: string = `${environment.api.urlProduct}${environment.api.server_product.category.destroy}`;
+  urlDestroy: string = `${environment.api.urlProduct}${environment.api.server_product.category.root}`;
   urlThumbs: string = `${environment.api.url}${environment.api.server_be.category.uploadThumb}`;
 
 
