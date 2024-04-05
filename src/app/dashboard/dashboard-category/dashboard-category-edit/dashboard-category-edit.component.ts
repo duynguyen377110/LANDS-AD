@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/services/http/http.service';
   styleUrls: ['./dashboard-category-edit.component.scss', '../dashboard-category-new/dashboard-category-new.component.scss']
 })
 export class DashboardCategoryEditComponent extends DashboardCategoryNewComponent implements OnInit {
-  override url: string = `${environment.api.urlProduct}${environment.api.server_product.category.update}`;
+  override url: string = `${environment.api.urlProduct}${environment.api.server_product.category.root}`;
   override titleButton: string = 'Edit category';
 
   constructor(
