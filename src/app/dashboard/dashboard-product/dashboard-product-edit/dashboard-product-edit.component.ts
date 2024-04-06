@@ -14,7 +14,7 @@ import { HttpService } from 'src/app/services/http/http.service';
   styleUrls: ['./dashboard-product-edit.component.scss', '../dashboard-product-new/dashboard-product-new.component.scss']
 })
 export class DashboardProductEditComponent extends DashboardProductNewComponent implements OnInit, OnDestroy {
-  override url: string = `${environment.api.urlProduct}${environment.api.server_product.product.update}`;
+  override url: string = `${environment.api.urlProduct}${environment.api.server_product.product.root}`;
   product: any = {};
   resolveSub: Subscription = new Subscription();
 

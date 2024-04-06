@@ -57,9 +57,7 @@ export const environment = {
                 root: 'category',
             },
             product: {
-                create: "product",
-                update: "product_update",
-                destroy: "product_delete"
+                root: 'product',
             }
         }
     }

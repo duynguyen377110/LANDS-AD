@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard-product.component.scss']
 })
 export class DashboardProductComponent implements OnInit, OnDestroy {
-  urlDestroy: string = `${environment.api.urlProduct}${environment.api.server_product.product.destroy}`;
+  urlDestroy: string = `${environment.api.urlProduct}${environment.api.server_product.product.root}`;
   urlThumbs: string = `${environment.api.url}${environment.api.server_be.product.uploadThumb}`;
 
   products: Array<any> = [];
