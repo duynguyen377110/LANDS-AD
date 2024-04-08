@@ -23,7 +23,7 @@ export class DashboardUserComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dataUserSub = this.route.data.subscribe((data: any) => {
-      let { users } = data.users;
+      let { users } = data.users.metadata;
       this.users = users;
     })
   }
