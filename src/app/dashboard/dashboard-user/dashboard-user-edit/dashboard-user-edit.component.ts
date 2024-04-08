@@ -27,8 +27,8 @@ export class DashboardUserEditComponent extends DashboardUserNewComponent implem
 
   override ngOnInit(): void {
     this.dataSub = this.route.data.subscribe((data: any) => {
-      let { user } = data.user;
-      let { roles } = data.roles;
+      let { user } = data.user.metadata;
+      let { roles } = data.roles.metadata;
       this.setDataInformation(user, roles);
       this.createForm();
     })

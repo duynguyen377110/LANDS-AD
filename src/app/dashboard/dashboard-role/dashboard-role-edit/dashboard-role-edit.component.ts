@@ -30,7 +30,7 @@ export class DashboardRoleEditComponent extends DashboardRoleNewComponent implem
 
   override ngOnInit(): void {
     this.dataRoleSub = this.route.data.subscribe((data: any) => {
-      let { role } = data.role;
+      let { role } = data.role.metadata;
       this.role = role;
       this.initSetterDataForm();
       this.createForm();

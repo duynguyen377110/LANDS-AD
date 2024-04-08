@@ -23,7 +23,7 @@ export class DashboardRoleComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.dataSub = this.route.data.subscribe((data: any) => {
-      let { roles } = data.roles;
+      let { roles } = data.roles.metadata;
       this.roles = roles;
     })
   }
