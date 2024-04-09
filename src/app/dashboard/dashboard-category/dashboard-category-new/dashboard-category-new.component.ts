@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment';
 })
 export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
   url: string = `${environment.api.url}${environment.api.category.admin.root}`;
-  urlUploadThumb: string = `${environment.api.url}${environment.api.server_be.category.uploadThumb}`;
 
   formCategory: FormGroup = new FormGroup({});
   title: FormControl = new FormControl('', [this.inputVali.require()]);
@@ -52,20 +51,20 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
     if(this.formCategory.status !== "INVALID") {
       this.submit = false;
 
-      let formCategoryData = new FormData();
-      formCategoryData.append('title', this.formCategory.value.title);
-      formCategoryData.append('description', this.formCategory.value.description);
+      let formData = new FormData();
+      formData.append('title', this.formCategory.value.title);
+      formData.append('description', this.formCategory.value.description);
 
 
       let inputPhotos: any = this.formCategory.controls['photos'];
 
       if(inputPhotos.value.length) {
           for(let file of inputPhotos.value) {
-            formCategoryData.append('photos', file);
+            formData.append('photos', file);
           }
       }
 
-      let res = await this.httpSendFile.post(this.url, formCategoryData);
+      let res = await this.httpSendFile.post(this.url, formData);
       let { status } = res;
 
       if(status) {

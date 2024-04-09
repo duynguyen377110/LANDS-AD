@@ -13,7 +13,6 @@ import { HttpService } from 'src/app/services/http/http.service';
   styleUrls: ['./dashboard-category-edit.component.scss', '../dashboard-category-new/dashboard-category-new.component.scss']
 })
 export class DashboardCategoryEditComponent extends DashboardCategoryNewComponent implements OnInit {
-  override url: string = `${environment.api.urlProduct}${environment.api.server_product.category.root}`;
   override titleButton: string = 'Edit category';
 
   constructor(
@@ -47,34 +46,28 @@ export class DashboardCategoryEditComponent extends DashboardCategoryNewComponen
 
     if(this.formCategory.status !== "INVALID") {
       this.submit = false;
-      let { id } = this.route.snapshot.params;
 
-      let formCategoryData = new FormData();
+      let { id } = this.route.snapshot.params;
+      let formData = new FormData();
+      formData.append('id', id);
+      formData.append('title', this.formCategory.value.title);
+      formData.append('description', this.formCategory.value.description);
+
+
       let inputPhotos: any = this.formCategory.controls['photos'];
-      let photos: Array<string> = [];
 
       if(inputPhotos.value.length) {
           for(let file of inputPhotos.value) {
-            formCategoryData.append('photos', file);
+            formData.append('photos', file);
           }
-
-          let { thumbs } = await this.httpSendFile.patch(this.urlUploadThumb, formCategoryData);
-          photos = thumbs;
       }
 
-      let payload = {
-        id,
-        title: this.formCategory.value.title,
-        description: this.formCategory.value.description,
-        thumbs: photos
-      }
+      let res = await this.httpSendFile.patch(this.url, formData);
+      let { status } = res;
 
-      this.httpService.patch(this.url, payload).subscribe((res: any) => {
-        let { status } = res;
-        if(status) {
-          this.router.navigate(['../..'], {relativeTo: this.route});
-        }
-      })
+      if(status) {
+        this.router.navigate(['../..'], {relativeTo: this.route});
+      }
     }
   }
 
