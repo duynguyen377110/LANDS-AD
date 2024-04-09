@@ -23,7 +23,6 @@ export class DashboardProductNewComponent implements OnInit, OnDestroy {
   categories: FormControl = new FormControl('', [this.serviceValidation.require()]);
 
   url: string = `${environment.api.url}${environment.api.product.admin.root}`;
-  urlUploadThumb: string = `${environment.api.url}${environment.api.server_be.product.uploadThumb}`;
 
   submit: boolean = false;
   titleButton: string = 'Tạo sản phẩm';

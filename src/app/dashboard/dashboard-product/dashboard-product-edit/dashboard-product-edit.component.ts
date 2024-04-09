@@ -14,7 +14,6 @@ import { HttpService } from 'src/app/services/http/http.service';
   styleUrls: ['./dashboard-product-edit.component.scss', '../dashboard-product-new/dashboard-product-new.component.scss']
 })
 export class DashboardProductEditComponent extends DashboardProductNewComponent implements OnInit, OnDestroy {
-  override url: string = `${environment.api.urlProduct}${environment.api.server_product.product.root}`;
   product: any = {};
   resolveSub: Subscription = new Subscription();
 
@@ -63,35 +62,29 @@ export class DashboardProductEditComponent extends DashboardProductNewComponent 
       this.submit = false;
 
       let formData = new FormData();
+      formData.append('id', this.product._id);
+      formData.append('productOwner', this.formProduct.value.productOwner);
+      formData.append('address', this.formProduct.value.address);
+      formData.append('contact', this.formProduct.value.contact);
+      formData.append('landArea', this.formProduct.value.landArea);
+      formData.append('price', this.formProduct.value.price);
+      formData.append('category', this.formProduct.value.categories);
+
+
       let inputPhotos: any = this.formProduct.controls['photos'];
-      let photos: Array<string> = [];
 
       if(inputPhotos.value.length) {
           for(let file of inputPhotos.value) {
             formData.append('photos', file);
           }
-
-          let { thumbs } = await this.httpSendFile.patch(this.urlUploadThumb, formData);
-          photos = thumbs;
       }
 
-      let payload = {
-        id: this.product._id,
-        productOwner: this.formProduct.value.productOwner,
-        address: this.formProduct.value.address,
-        contact: this.formProduct.value.contact,
-        landArea: this.formProduct.value.landArea,
-        price: this.formProduct.value.price,
-        category: this.formProduct.value.categories,
-        thumbs: photos
-      }
+      let res = await this.httpSendFile.patch(this.url, formData);
+      let { status } = res;
 
-      this.httpService.patch(this.url, payload).subscribe((res: any) => {
-        let { status } = res;
-        if(status) {
-          this.router.navigate(['../..'], {relativeTo: this.route});
-        }
-      })
+      if(status) {
+        this.router.navigate(['../..'], {relativeTo: this.route});
+      }
       
     }
   }
