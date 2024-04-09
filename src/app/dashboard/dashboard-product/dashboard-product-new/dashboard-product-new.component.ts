@@ -72,36 +72,6 @@ export class DashboardProductNewComponent implements OnInit, OnDestroy {
     if(this.formProduct.status !== "INVALID") {
       this.submit = false;
 
-      // let inputPhotos: any = this.formProduct.controls['photos'];
-      // let photos: Array<string> = [];
-
-      // if(inputPhotos.value.length) {
-      //   let formCategoryData = new FormData();
-      //   for(let file of inputPhotos.value) {
-      //     formCategoryData.append('photos', file);
-      //   }
-
-      //   let { thumbs } = await this.httpSendFile.post(this.urlUploadThumb, formCategoryData);
-      //   photos = thumbs;
-      // }
-
-      // let payload = {
-      //   productOwner: this.formProduct.value.productOwner,
-      //   address: this.formProduct.value.address,
-      //   contact: this.formProduct.value.contact,
-      //   landArea: this.formProduct.value.landArea,
-      //   price: this.formProduct.value.price,
-      //   category: this.formProduct.value.categories,
-      //   thumbs: photos
-      // }
-
-      // this.httpService.post(this.url, payload).subscribe((res: any) => {
-      //   let { status } = res;
-      //   if(status) {
-      //     this.router.navigate(['..'], {relativeTo: this.route});
-      //   }
-      // })
-
       let formData = new FormData();
 
       formData.append('productOwner', this.formProduct.value.productOwner);
