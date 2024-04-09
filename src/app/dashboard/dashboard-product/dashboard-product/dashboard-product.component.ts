@@ -10,8 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard-product.component.scss']
 })
 export class DashboardProductComponent implements OnInit, OnDestroy {
-  urlDestroy: string = `${environment.api.urlProduct}${environment.api.server_product.product.root}`;
-  urlThumbs: string = `${environment.api.url}${environment.api.server_be.product.uploadThumb}`;
+  urlDestroy: string = `${environment.api.url}${environment.api.product.admin.root}`;
 
   products: Array<any> = [];
   loadDataSub: Subscription = new Subscription();
@@ -32,17 +31,10 @@ export class DashboardProductComponent implements OnInit, OnDestroy {
   }
 
   onDeleteHander(event: any) {
-    this.destroyProductSub = this.httpService.delete(this.urlDestroy, {id: event})
-    .subscribe((res) => {
-      let { status, thumbs } = res;
-      
+    this.destroyProductSub = this.httpService.delete(this.urlDestroy, {id: event}).subscribe((res) => {
+      let { status } = res;
       if(status) {
-        this.destroyProductThumb = this.httpService.delete(this.urlThumbs, {thumbs}).subscribe((res: any) => {
-          let { status } = res;
-          if(status) {
-            window.location.reload();
-          }
-        })
+        window.location.reload();
       }
     })
   }
