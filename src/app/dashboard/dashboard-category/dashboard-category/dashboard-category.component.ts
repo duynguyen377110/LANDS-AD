@@ -13,7 +13,6 @@ export class DashboardCategoryComponent implements OnInit,OnDestroy {
 
   url: string = `${environment.api.urlCommon}${environment.api.category.common.all}`;
   urlDestroy: string = `${environment.api.url}${environment.api.category.admin.root}`;
-  // urlThumbs: string = `${environment.api.url}${environment.api.server_be.category.uploadThumb}`;
 
 
   amountDataSub: Subscription = new Subscription();
