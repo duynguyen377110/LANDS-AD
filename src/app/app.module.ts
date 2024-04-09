@@ -13,7 +13,7 @@ import { authReducer } from './store/store-auth/store-auth-reducer';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

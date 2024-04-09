@@ -14,7 +14,7 @@ export class CommonTableComponent {
 
   columnsRole: Array<string> = ['STT', 'Phân quyền', 'Người dùng', 'Chức năng'];
   columnsUser: Array<string> = ['STT', 'Họ và tên', 'Số điện thoại', 'Phân quyền', 'Chức năng'];
-  columnsCategory: Array<string> = ['STT', 'Tiêu đề', 'Ảnh', 'Chức năng'];
+  columnsCategory: Array<string> = ['STT', 'Tiêu đề', 'Ảnh', "Sản phẩm", 'Chức năng'];
   columnsProduct: Array<string> = ['STT', 'Chủ sở hữu', 'Ảnh', 'Diện tích', 'Giá', 'Chức năng'];
 
   onDeleteHandler(event: any) {

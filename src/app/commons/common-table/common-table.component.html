@@ -78,6 +78,7 @@
             <th scope="row">1</th>
             <td>{{cal.title}}</td>
             <td><img class="table-thumb" [src]="cal.thumbs[0]" alt="thumb" /></td>
+            <td>{{cal.products.length}}</td>
             <td class="table-method">
                 <app-common-button
                     [id]="cal._id"
@@ -110,7 +111,7 @@
             <td>{{product.productOwner}}</td>
             <td><img class="table-thumb" [src]="product.thumbs[0]" alt="thumb" /></td>
             <td>{{product.landArea}}</td>
-            <td>{{product.price.$numberDecimal}}</td>
+            <td>{{product.price | money}}</td>
             <td class="table-method">
                 <app-common-button
                     [id]="product._id"

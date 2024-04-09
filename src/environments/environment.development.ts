@@ -43,22 +43,6 @@ export const environment = {
                 root: 'product',
                 all: 'product/all',
             }
-        },
-        server_be: {
-            category: {
-                uploadThumb: "category"
-            },
-            product: {
-                uploadThumb: "product"
-            }
-        },
-        server_product: {
-            category: {
-                root: 'category',
-            },
-            product: {
-                root: 'product',
-            }
         }
     }
 };

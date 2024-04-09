@@ -1,7 +1,11 @@
 <header class="common-header-component">
     <div class="container">
         <div class="row">
-            <div class="col-3"></div>
+            <div class="col-3">
+                <h1 class="dashboard-logo">
+                    <a [routerLink]="['/']">Lands</a>
+                </h1>
+            </div>
             <div class="col-9 d-flex align-items-center">
                 <div class="header-signout">
                     <h2 class="header-user-email">{{auth.email}}</h2>
