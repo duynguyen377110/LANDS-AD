@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
 export class DashboardCategoryComponent implements OnInit,OnDestroy {
 
   url: string = `${environment.api.urlCommon}${environment.api.category.common.all}`;
-  urlDestroy: string = `${environment.api.urlProduct}${environment.api.server_product.category.root}`;
-  urlThumbs: string = `${environment.api.url}${environment.api.server_be.category.uploadThumb}`;
+  urlDestroy: string = `${environment.api.url}${environment.api.category.admin.root}`;
+  // urlThumbs: string = `${environment.api.url}${environment.api.server_be.category.uploadThumb}`;
 
 
   amountDataSub: Subscription = new Subscription();
@@ -42,16 +42,11 @@ export class DashboardCategoryComponent implements OnInit,OnDestroy {
 
 
   onDeleteHander(event: any) {    
-    this.destroyCategorySub = this.httpService.delete(this.urlDestroy, {id: event})
-    .subscribe((res) => {
-      let { status, thumbs } = res;
+    this.destroyCategorySub = this.httpService.delete(this.urlDestroy, {id: event}).subscribe((res) => {
+      let { status } = res;
+
       if(status) {
-        this.destroyCategoryThumb = this.httpService.delete(this.urlThumbs, {thumbs}).subscribe((res: any) => {
-          let { status } = res;
-          if(status) {
-            window.location.reload();
-          }
-        })
+        window.location.reload();
       }
     })
   }
