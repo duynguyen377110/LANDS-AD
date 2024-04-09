@@ -20,6 +20,7 @@ import { CommonInputFileComponent } from './common-input-file/common-input-file.
 import { CommonBlandComponent } from './common-bland/common-bland.component';
 import { CommonLoaderComponent } from './common-loader/common-loader.component';
 import { CommonTextareaComponent } from './common-textarea/common-textarea.component';
+import { MoneyPipe } from '../pipes/money.pipe';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { CommonTextareaComponent } from './common-textarea/common-textarea.compo
     CommonBlandComponent,
     CommonLoaderComponent,
     CommonTextareaComponent,
+    MoneyPipe,
   ],
   imports: [
     CommonModule,

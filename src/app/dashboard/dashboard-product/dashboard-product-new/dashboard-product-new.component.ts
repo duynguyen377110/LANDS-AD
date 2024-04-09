@@ -90,7 +90,6 @@ export class DashboardProductNewComponent implements OnInit, OnDestroy {
       }
 
       let res = await this.httpSendFile.post(this.url, formData);
-      console.log(res);
       let { status } = res;
 
       if(status) {
