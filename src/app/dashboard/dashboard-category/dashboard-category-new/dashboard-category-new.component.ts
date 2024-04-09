@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard-category-new.component.scss']
 })
 export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
-  url: string = `${environment.api.urlProduct}${environment.api.server_product.category.root}`;
+  url: string = `${environment.api.url}${environment.api.category.admin.root}`;
   urlUploadThumb: string = `${environment.api.url}${environment.api.server_be.category.uploadThumb}`;
 
   formCategory: FormGroup = new FormGroup({});
@@ -52,31 +52,25 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
     if(this.formCategory.status !== "INVALID") {
       this.submit = false;
 
+      let formCategoryData = new FormData();
+      formCategoryData.append('title', this.formCategory.value.title);
+      formCategoryData.append('description', this.formCategory.value.description);
+
+
       let inputPhotos: any = this.formCategory.controls['photos'];
-      let photos: Array<string> = [];
 
       if(inputPhotos.value.length) {
-        let formCategoryData = new FormData();
-        for(let file of inputPhotos.value) {
-          formCategoryData.append('photos', file);
-        }
-
-        let { thumbs } = await this.httpSendFile.post(this.urlUploadThumb, formCategoryData);
-        photos = thumbs;
+          for(let file of inputPhotos.value) {
+            formCategoryData.append('photos', file);
+          }
       }
 
-      let payload = {
-        title: this.formCategory.value.title,
-        description: this.formCategory.value.description,
-        thumbs: photos
-      }
+      let res = await this.httpSendFile.post(this.url, formCategoryData);
+      let { status } = res;
 
-      this.httpService.post(this.url, payload).subscribe((res: any) => {
-        let { status } = res;
-        if(status) {
-          this.router.navigate(['..'], {relativeTo: this.route});
-        }
-      })
+      if(status) {
+        this.router.navigate(['..'], {relativeTo: this.route});
+      }
       
     }
   }
