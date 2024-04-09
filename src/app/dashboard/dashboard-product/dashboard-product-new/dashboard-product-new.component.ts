@@ -22,7 +22,7 @@ export class DashboardProductNewComponent implements OnInit, OnDestroy {
   photos: FormControl = new FormControl('', []);
   categories: FormControl = new FormControl('', [this.serviceValidation.require()]);
 
-  url: string = `${environment.api.urlProduct}${environment.api.server_product.product.root}`;
+  url: string = `${environment.api.url}${environment.api.product.admin.root}`;
   urlUploadThumb: string = `${environment.api.url}${environment.api.server_be.product.uploadThumb}`;
 
   submit: boolean = false;
@@ -72,35 +72,61 @@ export class DashboardProductNewComponent implements OnInit, OnDestroy {
     if(this.formProduct.status !== "INVALID") {
       this.submit = false;
 
+      // let inputPhotos: any = this.formProduct.controls['photos'];
+      // let photos: Array<string> = [];
+
+      // if(inputPhotos.value.length) {
+      //   let formCategoryData = new FormData();
+      //   for(let file of inputPhotos.value) {
+      //     formCategoryData.append('photos', file);
+      //   }
+
+      //   let { thumbs } = await this.httpSendFile.post(this.urlUploadThumb, formCategoryData);
+      //   photos = thumbs;
+      // }
+
+      // let payload = {
+      //   productOwner: this.formProduct.value.productOwner,
+      //   address: this.formProduct.value.address,
+      //   contact: this.formProduct.value.contact,
+      //   landArea: this.formProduct.value.landArea,
+      //   price: this.formProduct.value.price,
+      //   category: this.formProduct.value.categories,
+      //   thumbs: photos
+      // }
+
+      // this.httpService.post(this.url, payload).subscribe((res: any) => {
+      //   let { status } = res;
+      //   if(status) {
+      //     this.router.navigate(['..'], {relativeTo: this.route});
+      //   }
+      // })
+
+      let formData = new FormData();
+
+      formData.append('productOwner', this.formProduct.value.productOwner);
+      formData.append('address', this.formProduct.value.address);
+      formData.append('contact', this.formProduct.value.contact);
+      formData.append('landArea', this.formProduct.value.landArea);
+      formData.append('price', this.formProduct.value.price);
+      formData.append('category', this.formProduct.value.categories);
+
+
       let inputPhotos: any = this.formProduct.controls['photos'];
-      let photos: Array<string> = [];
 
       if(inputPhotos.value.length) {
-        let formCategoryData = new FormData();
-        for(let file of inputPhotos.value) {
-          formCategoryData.append('photos', file);
-        }
-
-        let { thumbs } = await this.httpSendFile.post(this.urlUploadThumb, formCategoryData);
-        photos = thumbs;
+          for(let file of inputPhotos.value) {
+            formData.append('photos', file);
+          }
       }
 
-      let payload = {
-        productOwner: this.formProduct.value.productOwner,
-        address: this.formProduct.value.address,
-        contact: this.formProduct.value.contact,
-        landArea: this.formProduct.value.landArea,
-        price: this.formProduct.value.price,
-        category: this.formProduct.value.categories,
-        thumbs: photos
-      }
+      let res = await this.httpSendFile.post(this.url, formData);
+      console.log(res);
+      let { status } = res;
 
-      this.httpService.post(this.url, payload).subscribe((res: any) => {
-        let { status } = res;
-        if(status) {
-          this.router.navigate(['..'], {relativeTo: this.route});
-        }
-      })
+      if(status) {
+        this.router.navigate(['..'], {relativeTo: this.route});
+      }
       
     }
   }
