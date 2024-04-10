@@ -2,7 +2,6 @@ export const environment = {
     api: {
         url: "https://lands-be.onrender.com/api/v1/admin/",
         urlCommon: "https://lands-be.onrender.com/api/v1/common/",
-        urlProduct: "https://landsbeproductatsha256.onrender.com/api/v1/",
         access: {
             signin: 'access/signin',
             signout: 'access/signout'
