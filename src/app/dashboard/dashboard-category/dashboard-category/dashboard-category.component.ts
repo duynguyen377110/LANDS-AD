@@ -32,7 +32,6 @@ export class DashboardCategoryComponent implements OnInit,OnDestroy {
     this.amountDataSub = this.route.data.subscribe((data) => {
       this.allCategorySub = this.httpService.get(this.url).subscribe((data) => {
         let { status, categories } = data;
-        console.log(categories)
         if(status) {
           Object.assign(this.categories, categories);
         }

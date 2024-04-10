@@ -31,7 +31,6 @@ export class DashboardCategoryEditComponent extends DashboardCategoryNewComponen
       let { category } = data.category;
       this.initSetterData(category);
       this.createForm();
-      console.log(category);
     })
   }
 
