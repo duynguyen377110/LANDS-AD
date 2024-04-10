@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
 import { HttpSendFileService } from 'src/app/services/http-send-file/http-send-file.service';
 import { Subscription } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
@@ -30,8 +29,8 @@ export class DashboardProductEditComponent extends DashboardProductNewComponent 
 
   override ngOnInit(): void {
     this.resolveSub = this.route.data.subscribe((data: any) => {
-      let { categories } = data.categories;
-      let { product } = data.product;
+      let { categories } = data.categories.metadata;
+      let { product } = data.product.metadata;
 
       this.selectCategories = categories.map((category: any) => {
         return {

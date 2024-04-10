@@ -28,7 +28,7 @@ export class DashboardCategoryEditComponent extends DashboardCategoryNewComponen
 
   override ngOnInit(): void {
     this.route.data.subscribe((data: any) => {
-      let { category } = data.category;
+      let { category } = data.category.metadata;
       this.initSetterData(category);
       this.createForm();
     })
