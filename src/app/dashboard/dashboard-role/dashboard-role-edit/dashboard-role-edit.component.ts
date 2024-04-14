@@ -38,8 +38,8 @@ export class DashboardRoleEditComponent extends DashboardRoleNewComponent implem
   }
 
   initSetterDataForm() {
-    console.log(this.role);
     this.title.setValue(this.role.title);
+    this.slug.setValue(this.role.slug);
   }
 
   override async onSubmitHandler(event: any) {
@@ -51,6 +51,7 @@ export class DashboardRoleEditComponent extends DashboardRoleNewComponent implem
       let payload = {
         id: this.role._id,
         title: this.formRole.value.title,
+        slug: this.formRole.value.slug,
       }
 
       this.httpService.patch(this.url, payload).subscribe((res) => {

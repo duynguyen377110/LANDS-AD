@@ -7,7 +7,8 @@ const initialState = {
         email: '',
         phone: '',
         refreshToken: '',
-        accessToken: ''
+        accessToken: '',
+        slug: '',
     }
 }
 
@@ -15,8 +16,8 @@ export const authReducer = createReducer(
     initialState,
     on(authLogin, (state: any, action: any) => {
         
-        let {userId, accessToken, address, email, phone, refreshToken} = action.metadata;
-        localStorage.setItem('user', JSON.stringify({accessToken, address, email, id: userId, phone, refreshToken,}));
+        let {userId, accessToken, address, email, phone, refreshToken, slug} = action.metadata;
+        localStorage.setItem('user', JSON.stringify({accessToken, address, email, id: userId, phone, refreshToken, slug}));
 
         return {
             ...state,
@@ -27,6 +28,7 @@ export const authReducer = createReducer(
                 phone,
                 accessToken,
                 refreshToken,
+                slug
             }
         };
     }),
@@ -41,6 +43,7 @@ export const authReducer = createReducer(
                 phone: '',
                 accessToken: '',
                 refreshToken: '',
+                slug: '',
             }
         }
     }),
@@ -57,6 +60,7 @@ export const authReducer = createReducer(
                 phone: user.phone,
                 accessToken: user.accessToken,
                 refreshToken: user.refreshToken,
+                slug: user.slug
             }
         }
     })
