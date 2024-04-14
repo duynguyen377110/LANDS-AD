@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class DashboardRoleNewComponent implements OnInit, OnDestroy {
   formRole: FormGroup = new FormGroup({});
   title: FormControl = new FormControl('', [this.serviceValidation.require()]);
+  slug: FormControl = new FormControl('', [this.serviceValidation.require()]);
 
 
   url: string = `${environment.api.url}${environment.api.role.admin.root}`;
@@ -37,6 +38,7 @@ export class DashboardRoleNewComponent implements OnInit, OnDestroy {
   createForm(): void {
     this.formRole = this.fb.group({
       title: this.title,
+      slug: this.slug
     })
   }
 

@@ -11,6 +11,16 @@
                     [type]="'text'"></app-commons-input>
             </div>
 
+            <div class="col-12 col-md-6">
+                <app-commons-input
+                    ngDefaultControl
+                    [formControl]="slug"
+                    [label]="'Mã quyền'"
+                    [id]="'role-slug'"
+                    [submit]="submit"
+                    [type]="'text'"></app-commons-input>
+            </div>
+
             <div class="col-12 mt-5">
                 <app-common-button
                     [type]="'submit'"
