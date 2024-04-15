@@ -8,6 +8,7 @@ import { ValidationsService } from 'src/app/services/validations/validations.ser
 import { environment } from 'src/environments/environment';
 
 import { authLogin } from "../../store/store-auth/store-auth-action";
+import { openWarning } from 'src/app/store/store-warning/store-warning-action';
 
 @Component({
   selector: 'app-auth-login',
@@ -50,13 +51,19 @@ export class AuthLoginComponent implements OnInit, OnDestroy{
     event.preventDefault();
 
     if(this.signinForm.status !== 'INVALID') {
-      this.signinSub = this.httpService.post(this.url, this.signinForm.value).subscribe((res: any) => {
-        let { status, metadata }: any = res;
-        if(status) {
-          this.store.dispatch(authLogin({metadata}));
-          this.router.navigate(['..'], {relativeTo: this.route});
+      this.signinSub = this.httpService.post(this.url, this.signinForm.value).subscribe(
+        (res: any) => {
+          let { status, metadata }: any = res;
+          if(status) {
+            this.store.dispatch(authLogin({metadata}));
+            this.router.navigate(['..'], {relativeTo: this.route});
+          }
+        },
+        (error: any) => {
+          console.log(error)
+          this.store.dispatch(openWarning({message: error.message}));
         }
-      })
+      )
     }
   }
 
