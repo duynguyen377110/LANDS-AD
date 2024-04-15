@@ -21,6 +21,7 @@ import { CommonBlandComponent } from './common-bland/common-bland.component';
 import { CommonLoaderComponent } from './common-loader/common-loader.component';
 import { CommonTextareaComponent } from './common-textarea/common-textarea.component';
 import { MoneyPipe } from '../pipes/money.pipe';
+import { CommonWarningComponent } from './common-warning/common-warning.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MoneyPipe } from '../pipes/money.pipe';
     CommonBlandComponent,
     CommonLoaderComponent,
     CommonTextareaComponent,
+    CommonWarningComponent,
     MoneyPipe,
   ],
   imports: [
@@ -59,6 +61,7 @@ import { MoneyPipe } from '../pipes/money.pipe';
     CommonBlandComponent,
     CommonLoaderComponent,
     CommonTextareaComponent,
+    CommonWarningComponent
   ]
 })
 export class CommonsModule { }

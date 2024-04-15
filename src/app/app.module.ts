@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { loaderReducer } from './store/store-loader/store-loader-reducer';
 import { authReducer } from './store/store-auth/store-auth-reducer';
+import { warningReducer } from './store/store-warning/store-warning-reducer';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { authReducer } from './store/store-auth/store-auth-reducer';
     HttpClientModule,
     StoreModule.forRoot({
       loader: loaderReducer,
-      auth: authReducer
+      auth: authReducer,
+      warning: warningReducer
     }, {})
   ],
   providers: [],
