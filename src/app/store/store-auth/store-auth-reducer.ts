@@ -15,20 +15,24 @@ const initialState = {
 export const authReducer = createReducer(
     initialState,
     on(authLogin, (state: any, action: any) => {
-        
-        let {userId, accessToken, address, email, phone, refreshToken, slug} = action.metadata;
-        localStorage.setItem('user', JSON.stringify({accessToken, address, email, id: userId, phone, refreshToken, slug}));
+        let { access } = action.metadata;
+
+        let payload = {
+            id: access.user._id,
+            address: access.user.address,
+            email: access.user.email,
+            phone: access.user.email,
+            accessToken: access.accessToken,
+            refreshToken: access.refreshToken,
+            slug: access.slug
+        }
+
+        localStorage.setItem('user', JSON.stringify({...payload}));
 
         return {
             ...state,
             infor: {
-                id: userId,
-                address,
-                email,
-                phone,
-                accessToken,
-                refreshToken,
-                slug
+                ...payload
             }
         };
     }),
