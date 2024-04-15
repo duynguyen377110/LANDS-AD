@@ -12,7 +12,8 @@ export const environment = {
             },
             common: {
                 root: 'role',
-                all: 'role/all'
+                all: 'role/all',
+                amount: "role/amount",
             }
         },
         user: {
@@ -21,7 +22,8 @@ export const environment = {
             },
             common: {
                 root: 'user',
-                all: 'user/all'
+                all: 'user/all',
+                amount: "user/amount",
             }
         },
         category: {
@@ -41,6 +43,7 @@ export const environment = {
             common: {
                 root: 'product',
                 all: 'product/all',
+                amount: "product/amount",
             }
         }
     }

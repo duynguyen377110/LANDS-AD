@@ -11,8 +11,8 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let cal of list">
-        <th scope="row">1</th>
+      <tr *ngFor="let cal of list; index as i">
+        <th scope="row">{{i}}</th>
         <td>{{cal.title}}</td>
         <td>{{cal.slug}}</td>
         <td>{{cal.users.length}}</td>
@@ -43,8 +43,8 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let cal of list">
-        <th scope="row">1</th>
+      <tr *ngFor="let cal of list; index as i">
+        <th scope="row">{{i}}</th>
         <td>{{cal.fullName}}</td>
         <td>{{cal.phone}}</td>
         <td>{{cal.role.title}}</td>
@@ -75,8 +75,8 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let cal of list">
-            <th scope="row">1</th>
+          <tr *ngFor="let cal of list; index as i">
+            <th scope="row">{{i}}</th>
             <td>{{cal.title}}</td>
             <td><img class="table-thumb" [src]="cal.thumbs[0]" alt="thumb" /></td>
             <td>{{cal.products.length}}</td>
@@ -107,8 +107,8 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let product of list">
-            <th scope="row">1</th>
+          <tr *ngFor="let product of list; index as i">
+            <th scope="row">{{i}}</th>
             <td>{{product.productOwner}}</td>
             <td><img class="table-thumb" [src]="product.thumbs[0]" alt="thumb" /></td>
             <td>{{product.landArea}}</td>

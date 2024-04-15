@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardMainComponent } from './dashboard-main/dashboard-main.component';
+import { CategoryAmountService } from '../services/category/category-amount.service';
+import { ProductAmountService } from '../services/product/product-amount.service';
+import { UserAmountService } from '../services/user/user-amount.service';
+import { RoleAmountService } from '../services/role/role-amount.service';
 
 const routes: Routes = [
   {
@@ -10,6 +14,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        resolve: {
+          category: CategoryAmountService,
+          product: ProductAmountService,
+          user: UserAmountService,
+          role: RoleAmountService,
+        },
         component: DashboardMainComponent
       },
       {
