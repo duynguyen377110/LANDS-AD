@@ -1,1 +1,55 @@
-<p>dashboard-main works!</p>
+<div class="dashboard-main-component">
+    <div class="row">
+        <div class="col-12 col-md-6 mb-5">
+            <div class="main-card">
+                <div class="card-infor">
+                    <h2>Phân quyền</h2>
+                    <span><mat-icon aria-hidden="false" fontIcon="folder_supervised"></mat-icon></span>
+                </div>
+                <div class="card-quantity">
+                    <span class="quantity-num">{{amountRole}}</span>
+                    <span class="quantity-title">loại phổ biến</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-5">
+            <div class="main-card">
+                <div class="card-infor">
+                    <h2>Tài khoản - người dùng</h2>
+                    <span><mat-icon aria-hidden="false" fontIcon="group"></mat-icon></span>
+                </div>
+                <div class="card-quantity">
+                    <span class="quantity-num">{{amountUser}}</span>
+                    <span class="quantity-title">Người dùng đăng ký</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-5">
+            <div class="main-card">
+                <div class="card-infor">
+                    <h2>Loại bất động sản</h2>
+                    <span><mat-icon aria-hidden="false" fontIcon="grid_view"></mat-icon></span>
+                </div>
+                <div class="card-quantity">
+                    <span class="quantity-num">{{amountCategory}}</span>
+                    <span class="quantity-title">Loại hình bất động sản</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 mb-5">
+            <div class="main-card">
+                <div class="card-infor">
+                    <h2>Bất động sản<nav></nav></h2>
+                    <span><mat-icon aria-hidden="false" fontIcon="landscape_2"></mat-icon></span>
+                </div>
+                <div class="card-quantity">
+                    <span class="quantity-num">{{amountProduct}}</span>
+                    <span class="quantity-title">Các bất dộng sản đã đăng</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

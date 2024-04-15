@@ -1,19 +1,19 @@
 <div class="common-tabs-component">
     <div class="tab-container">
         <ul class="tab-list">
-            <li>
+            <li routerLinkActive="active">
                 <a [routerLink]="['/role']" >Phân quyền</a>
             </li>
-            <li>
+            <li routerLinkActive="active">
                 <a [routerLink]="['/user']" >Người dùng</a>
             </li>
-            <li>
+            <li routerLinkActive="active">
                 <a [routerLink]="['/category']" >Danh mục</a>
             </li>
-            <li>
+            <li routerLinkActive="active">
                 <a [routerLink]="['/product']" >Sản phẩm</a>
             </li>
-            <li>
+            <li routerLinkActive="active">
                 <a (click)="onUserSignout()" class="btn-signout">Đăng xuất</a>
             </li>
         </ul>

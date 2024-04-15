@@ -17,6 +17,11 @@
                     display: flex;
                     padding: 1.5rem;
                 }
+                &.active {
+                    a {
+                        background-color: #cdcdcd;
+                    }
+                }
                 .btn-signout {
                     cursor: pointer;
                 }
