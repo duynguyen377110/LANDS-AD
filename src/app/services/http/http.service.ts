@@ -28,9 +28,10 @@ export class HttpService implements Ihttp {
       }),
       catchError((responseErr: any) => {
         this.store.dispatch(toggleLoader());
+
         let payload = {
           status: responseErr.ok,
-          message: responseErr.statusText
+          message: responseErr.error.message
         }
         return throwError(() => payload);
       })
@@ -48,9 +49,10 @@ export class HttpService implements Ihttp {
       }),
       catchError((responseErr: any) => {
         this.store.dispatch(toggleLoader());
+
         let payload = {
           status: responseErr.ok,
-          message: responseErr.statusText
+          message: responseErr.error.message
         }
         return throwError(() => payload);
       })
@@ -67,9 +69,10 @@ export class HttpService implements Ihttp {
       }),
       catchError((responseErr: any) => {
         this.store.dispatch(toggleLoader());
+
         let payload = {
           status: responseErr.ok,
-          message: responseErr.statusText
+          message: responseErr.error.message
         }
         return throwError(() => payload);
       })
@@ -88,9 +91,10 @@ export class HttpService implements Ihttp {
       }),
       catchError((responseErr: any) => {
         this.store.dispatch(toggleLoader());
+
         let payload = {
           status: responseErr.ok,
-          message: responseErr.statusText
+          message: responseErr.error.message
         }
         return throwError(() => payload);
       })

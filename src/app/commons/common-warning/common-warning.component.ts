@@ -26,7 +26,7 @@ export class CommonWarningComponent implements OnInit, OnDestroy {
 
       setTimeout(() => {
         this.store.dispatch(closeWarning());
-      }, 2000)
+      }, 2500)
     })
   }
 
