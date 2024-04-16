@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError, map } from 'rxjs';
 import { Ihttp } from '../Ihttp';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 
 import { toggleLoader } from "../../store/store-loader/store-loader-action";
@@ -17,10 +17,10 @@ export class HttpService implements Ihttp {
     private store: Store<{loader: any}>
   ) { }
 
-  get(url: string): Observable<any> {
+  get(url: string, headers?: HttpHeaders | any): Observable<any> {
     this.store.dispatch(toggleLoader());
 
-    return this.http.get(url)
+    return this.http.get(url, {headers})
     .pipe(
       map((response: any) => {
         this.store.dispatch(toggleLoader());
@@ -38,10 +38,10 @@ export class HttpService implements Ihttp {
     )
   }
 
-  post(url: string, payload: any): Observable<any> {
+  post(url: string, payload: any, headers?: any): Observable<any> {
     this.store.dispatch(toggleLoader());
 
-    return this.http.post(url, payload)
+    return this.http.post(url, payload, {headers})
     .pipe(
       map((response: any) => {
         this.store.dispatch(toggleLoader());
@@ -59,9 +59,10 @@ export class HttpService implements Ihttp {
     )
   }
 
-  patch(url: string, payload: any): Observable<any> {
+  patch(url: string, payload: any, headers?: any): Observable<any> {
     this.store.dispatch(toggleLoader());
-    return this.http.patch(url, payload)
+
+    return this.http.patch(url, payload, {headers})
     .pipe(
       map((response: any) => {
         this.store.dispatch(toggleLoader());
@@ -81,9 +82,10 @@ export class HttpService implements Ihttp {
 
   push(): void { }
 
-  delete(url: string, payload: any): Observable<any> {
+  delete(url: string, payload: any, headers?: any): Observable<any> {
     this.store.dispatch(toggleLoader());
-    return this.http.delete(url, {body: payload})
+
+    return this.http.delete(url, {body: payload, headers})
     .pipe(
       map((response: any) => {
         this.store.dispatch(toggleLoader());

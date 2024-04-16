@@ -33,7 +33,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy{
     private route: ActivatedRoute,
     private serviceValidation: ValidationsService,
     private httpService: HttpService,
-    private store: Store<{auth: any}>
+    private store: Store<{auth: any, warning: any}>
   ) {}
 
   ngOnInit(): void {
@@ -60,10 +60,8 @@ export class AuthLoginComponent implements OnInit, OnDestroy{
           }
         },
         (error: any) => {
-          console.log(error)
           this.store.dispatch(openWarning({message: error.message}));
-        }
-      )
+        })
     }
   }
 
