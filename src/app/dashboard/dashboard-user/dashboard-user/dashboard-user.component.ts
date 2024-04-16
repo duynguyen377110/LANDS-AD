@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { HeaderRequestService } from 'src/app/services/header/header-request.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { openWarning } from 'src/app/store/store-warning/store-warning-action';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -18,7 +21,9 @@ export class DashboardUserComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private headerRequest: HeaderRequestService,
+    private store: Store<{auth: any, warning: any}>,
   ) { }
 
   ngOnInit(): void {
@@ -29,13 +34,16 @@ export class DashboardUserComponent implements OnInit, OnDestroy {
   }
 
   onDeleteHander(event: any) {
-    this.destroyUserSub = this.httpService.delete(this.urlDestroy, {id: event})
-    .subscribe((res) => {
-      let { status } = res;
-      if(status) {
-        window.location.reload();
-      }
-    })
+    this.destroyUserSub = this.httpService.delete(this.urlDestroy, {id: event}, this.headerRequest.getHeader()).subscribe(
+      (res) => {
+        let { status } = res;
+        if(status) {
+          window.location.reload();
+        }
+      },
+      (error: any) => {
+        this.store.dispatch(openWarning({message: error.message}));
+      })
   }
 
   onUpdateHandler(event: any) {

@@ -4,6 +4,9 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { HeaderRequestService } from 'src/app/services/header/header-request.service';
+import { Store } from '@ngrx/store';
+import { openWarning } from 'src/app/store/store-warning/store-warning-action';
 
 @Component({
   selector: 'app-dashboard-user-edit',
@@ -20,9 +23,11 @@ export class DashboardUserEditComponent extends DashboardUserNewComponent implem
     router: Router,
     route: ActivatedRoute,
     validationService: ValidationsService,
-    httpService: HttpService
+    store: Store<{auth: any, warning: any}>,
+    httpService: HttpService,
+    headerRequest: HeaderRequestService
   ) {
-    super(fb, router, route, validationService, httpService);
+    super(fb, router, route, validationService, store, httpService, headerRequest);
   }
 
   override ngOnInit(): void {
@@ -72,12 +77,16 @@ export class DashboardUserEditComponent extends DashboardUserNewComponent implem
         ...this.userForm.value
       }
 
-      this.httpService.patch(this.url, payload).subscribe((res) => {
-        let { status } = res;
-        if(status) {
-          this.router.navigate(['../..'], {relativeTo: this.route});
-        }
-      })
+      this.httpService.patch(this.url, payload, this.headerRequest.getHeader()).subscribe(
+        (res) => {
+          let { status } = res;
+          if(status) {
+            this.router.navigate(['../..'], {relativeTo: this.route});
+          }
+        },
+        (error: any) => {
+          this.store.dispatch(openWarning({message: error.message}));
+        })
       
     }
   }
