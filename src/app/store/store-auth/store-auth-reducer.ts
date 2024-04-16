@@ -3,6 +3,7 @@ import { authLogin, authLogout, authReload } from "./store-auth-action";
 
 const initialState = {
     infor: {
+        id: '',
         address: '',
         email: '',
         phone: '',

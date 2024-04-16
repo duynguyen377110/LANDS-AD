@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { HeaderRequestService } from 'src/app/services/header/header-request.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { ValidationsService } from 'src/app/services/validations/validations.service';
+import { openWarning } from 'src/app/store/store-warning/store-warning-action';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -28,7 +31,9 @@ export class DashboardRoleNewComponent implements OnInit, OnDestroy {
     public router: Router,
     public route: ActivatedRoute,
     public serviceValidation: ValidationsService,
-    public httpService: HttpService
+    public store: Store<{auth: any, warning: any}>,
+    public httpService: HttpService,
+    public headerRequest: HeaderRequestService
   ) {}
 
   ngOnInit(): void {
@@ -49,13 +54,16 @@ export class DashboardRoleNewComponent implements OnInit, OnDestroy {
     if(this.formRole.status !== "INVALID") {
       this.submit = false;
 
-      this.httpService.post(this.url, this.formRole.value).subscribe((res) => {
-        let { status } = res;
-        if(status) {
-          this.router.navigate(['..'], {relativeTo: this.route});
-        }
-      })
-      
+      this.httpService.post(this.url, this.formRole.value, this.headerRequest.getHeader()).subscribe(
+        (res) => {
+          let { status } = res;
+          if(status) {
+            this.router.navigate(['..'], {relativeTo: this.route});
+          }
+        },
+        (error: any) => {
+          this.store.dispatch(openWarning({message: error.message}));
+        })
     }
   }
 
