@@ -52,6 +52,10 @@ export class DashboardCategoryNewComponent implements OnInit, OnDestroy {
       this.submit = false;
 
       let formData = new FormData();
+      let user: any = localStorage.getItem("user");
+      user = JSON.parse(user);
+
+      formData.append('admin', user.id);
       formData.append('title', this.formCategory.value.title);
       formData.append('description', this.formCategory.value.description);
 

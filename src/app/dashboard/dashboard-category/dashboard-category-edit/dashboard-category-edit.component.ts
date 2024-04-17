@@ -47,11 +47,14 @@ export class DashboardCategoryEditComponent extends DashboardCategoryNewComponen
       this.submit = false;
 
       let { id } = this.route.snapshot.params;
+      let user: any = localStorage.getItem("user");
+      user = JSON.parse(user);
+
       let formData = new FormData();
+      formData.append('admin', user.id);
       formData.append('id', id);
       formData.append('title', this.formCategory.value.title);
       formData.append('description', this.formCategory.value.description);
-
 
       let inputPhotos: any = this.formCategory.controls['photos'];
 

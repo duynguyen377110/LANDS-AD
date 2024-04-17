@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { toggleLoader } from 'src/app/store/store-loader/store-loader-action';
+import { openWarning } from 'src/app/store/store-warning/store-warning-action';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { toggleLoader } from 'src/app/store/store-loader/store-loader-action';
 export class HttpSendFileService {
 
   constructor(
-    private store: Store<{loader: any}>
+    private store: Store<{loader: any, warning: any}>
   ) { }
 
   post(url: string, payload: any = {}): Promise<any> {
@@ -20,13 +21,18 @@ export class HttpSendFileService {
           body: payload
         })
 
-        if(!res.ok) throw new Error('Call api unsuccess');
+        if(!res.ok) {
+          let metadata = await res.json();
+          throw new Error(metadata.message);
+        }
+
         this.store.dispatch(toggleLoader())
         resolve(await res.json());
 
-      } catch (error) {
-        this.store.dispatch(toggleLoader())
-        reject(error);
+      } catch (error: any) {
+        this.store.dispatch(toggleLoader());
+        this.store.dispatch(openWarning({message: error.message}));
+        reject({status: false});
 
       }
     })
@@ -41,13 +47,17 @@ export class HttpSendFileService {
           body: payload
         })
 
-        if(!res.ok) throw new Error('Call api unsuccess');
-        this.store.dispatch(toggleLoader())
+        if(!res.ok) {
+          let metadata = await res.json();
+          throw new Error(metadata.message);
+        }
+        this.store.dispatch(toggleLoader());
         resolve(await res.json());
 
-      } catch (error) {
-        this.store.dispatch(toggleLoader())
-        reject(error);
+      } catch (error: any) {
+        this.store.dispatch(toggleLoader());
+        this.store.dispatch(openWarning({message: error.message}));
+        reject({status: false});
 
       }
     })
