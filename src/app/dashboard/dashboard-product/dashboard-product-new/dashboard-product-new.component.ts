@@ -71,8 +71,12 @@ export class DashboardProductNewComponent implements OnInit, OnDestroy {
     if(this.formProduct.status !== "INVALID") {
       this.submit = false;
 
+      let user: any = localStorage.getItem("user");
+      user = JSON.parse(user);
+
       let formData = new FormData();
 
+      formData.append('admin', user.id);
       formData.append('productOwner', this.formProduct.value.productOwner);
       formData.append('address', this.formProduct.value.address);
       formData.append('contact', this.formProduct.value.contact);
