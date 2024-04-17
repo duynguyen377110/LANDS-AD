@@ -59,8 +59,12 @@ export class DashboardProductEditComponent extends DashboardProductNewComponent 
     this.submit = true;
     if(this.formProduct.status !== "INVALID") {
       this.submit = false;
+      let user: any = localStorage.getItem("user");
+      user = JSON.parse(user);
 
       let formData = new FormData();
+
+      formData.append('admin', user.id);
       formData.append('id', this.product._id);
       formData.append('productOwner', this.formProduct.value.productOwner);
       formData.append('address', this.formProduct.value.address);
