@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { loaderReducer } from './store/store-loader/store-loader-reducer';
 import { authReducer } from './store/store-auth/store-auth-reducer';
 import { warningReducer } from './store/store-warning/store-warning-reducer';
+import { paginationReducer } from './store/store-pagination/store-pagination-reducer';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { warningReducer } from './store/store-warning/store-warning-reducer';
     StoreModule.forRoot({
       loader: loaderReducer,
       auth: authReducer,
-      warning: warningReducer
+      warning: warningReducer,
+      pagination: paginationReducer
     }, {})
   ],
   providers: [],
