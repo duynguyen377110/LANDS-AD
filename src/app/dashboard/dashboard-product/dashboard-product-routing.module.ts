@@ -4,13 +4,15 @@ import { DashboardProductComponent } from './dashboard-product/dashboard-product
 import { DashboardProductNewComponent } from './dashboard-product-new/dashboard-product-new.component';
 import { DashboardProductEditComponent } from './dashboard-product-edit/dashboard-product-edit.component';
 import { CategoryLoadAllService } from 'src/app/services/category/category-load-all.service';
-import { ProductLoadAllService } from 'src/app/services/product/product-load-all.service';
 import { ProductLoadSingleService } from 'src/app/services/product/product-load-single.service';
+import { ProductAmountService } from 'src/app/services/product/product-amount.service';
 
 const routes: Routes = [
   {
     path: '',
-    resolve: {products: ProductLoadAllService},
+    resolve: {
+      amount: ProductAmountService
+    },
     component: DashboardProductComponent
   },
   {

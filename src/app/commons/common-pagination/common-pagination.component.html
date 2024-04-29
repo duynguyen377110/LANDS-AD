@@ -1,5 +1,5 @@
 <div class="pagination-container">
-    <nav *ngIf="amount > 1" aria-label="Page navigation">
+    <nav *ngIf="amount > itemsOfPage" aria-label="Page navigation">
         <ul class="pagination">
           <!-- <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
@@ -7,7 +7,10 @@
             </a>
           </li> -->
           <li *ngFor="let item of itemsTab" class="page-item">
-                <button (click)="onChangePage(item)" class="page-link" >{{item + 1}}</button>
+                <button
+                  [ngClass]="{'active': item == currentPage}"
+                  (click)="onChangePage(item)"
+                  class="page-link" >{{item + 1}}</button>
           </li>
           <!-- <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">

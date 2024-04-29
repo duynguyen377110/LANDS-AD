@@ -2,4 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    .page-item {
+        .active {
+            background-color: var(--bg-01);
+            color: #ffffff;
+        }
+    }
 }

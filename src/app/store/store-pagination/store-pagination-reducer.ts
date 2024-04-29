@@ -4,7 +4,7 @@ import { loadAmount, changeCurrentTab } from "./store-pagination-action";
 const initialState = {
     amount: 0,
     itemsTab: [], // List tab item choose current page
-    itemsOfPage: 1, // Quntity element on page
+    itemsOfPage: 3, // Quntity element on page
     type: '', // role, user, category, product,
     currentPage: 0
 }
@@ -17,7 +17,7 @@ export const paginationReducer = createReducer(
         return {
             ...state,
             amount,
-            itemsTab: Array.from({length: amount}, (_, index) => index),
+            itemsTab: Array.from({length: Math.ceil(amount / state.itemsOfPage)}, (_, index) => index),
             type: kind,
             currentPage: 0
         }
