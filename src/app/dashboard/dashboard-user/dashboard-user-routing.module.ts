@@ -4,13 +4,15 @@ import { DashboardUserComponent } from './dashboard-user/dashboard-user.componen
 import { DashboardUserNewComponent } from './dashboard-user-new/dashboard-user-new.component';
 import { DashboardUserEditComponent } from './dashboard-user-edit/dashboard-user-edit.component';
 import { RoleLoadAllService } from 'src/app/services/role/role-load-all.service';
-import { UserLoadAllService } from 'src/app/services/user/user-load-all.service';
 import { UserLoadSingleService } from 'src/app/services/user/user-load-single.service';
+import { UserAmountService } from 'src/app/services/user/user-amount.service';
 
 const routes: Routes = [
   {
     path: '',
-    resolve: {users: UserLoadAllService},
+    resolve: {
+      amount: UserAmountService,
+    },
     component: DashboardUserComponent
   },
   {
