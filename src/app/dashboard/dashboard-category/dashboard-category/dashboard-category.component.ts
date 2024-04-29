@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { HeaderRequestService } from 'src/app/services/header/header-request.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { loadAmount } from 'src/app/store/store-pagination/store-pagination-action';
 import { openWarning } from 'src/app/store/store-warning/store-warning-action';
 import { environment } from 'src/environments/environment';
 
@@ -13,13 +14,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard-category.component.scss']
 })
 export class DashboardCategoryComponent implements OnInit,OnDestroy {
-
-  url: string = `${environment.api.urlCommon}${environment.api.category.common.all}`;
   urlDestroy: string = `${environment.api.url}${environment.api.category.admin.root}`;
 
-
-  amountDataSub: Subscription = new Subscription();
-  allCategorySub: Subscription = new Subscription();
+  dataCategorySub:Subscription = new Subscription();
+  paginationSub: Subscription = new Subscription();
+  getCategorySub: Subscription = new Subscription();
   destroyCategorySub: Subscription = new Subscription();
   destroyCategoryThumb: Subscription = new Subscription();
 
@@ -30,16 +29,24 @@ export class DashboardCategoryComponent implements OnInit,OnDestroy {
     private route: ActivatedRoute,
     private headerRequest: HeaderRequestService,
     private httpService: HttpService,
-    private store: Store<{warning: any}>
+    private store: Store<{warning: any, pagination: any}>
   ) { }
 
   ngOnInit(): void {
-    this.amountDataSub = this.route.data.subscribe((data) => {
-      this.allCategorySub = this.httpService.get(this.url).subscribe((data) => {
-        let { categories }: any = data.metadata;
-        if(categories.length) {
-          Object.assign(this.categories, categories);
-        }
+    this.dataCategorySub = this.route.data.subscribe((data: any) => {
+      let { amount } = data.amount.metadata;
+
+      this.store.dispatch(loadAmount({amount, kind: 'category'}));
+      this.paginationSub = this.store.select("pagination").subscribe((data) => {
+        let {  currentPage, itemsOfPage } = data;
+        let start = currentPage * itemsOfPage;
+        let url: string = `${environment.api.urlCommon}${environment.api.category.common.root}/${start}/${itemsOfPage}`;
+
+        this.getCategorySub = this.httpService.get(url).subscribe((data: any) => {
+          let { categories } = data.metadata;
+          this.categories = categories;
+        })
+
       })
     })
   }
@@ -64,8 +71,11 @@ export class DashboardCategoryComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.amountDataSub.unsubscribe();
-    this.allCategorySub.unsubscribe();
+    this.dataCategorySub.unsubscribe();
+    this.paginationSub.unsubscribe();
+    this.getCategorySub.unsubscribe();
+
+
     this.destroyCategorySub.unsubscribe();
     this.destroyCategoryThumb.unsubscribe();
   }

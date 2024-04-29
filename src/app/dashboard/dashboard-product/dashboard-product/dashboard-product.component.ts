@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { HeaderRequestService } from 'src/app/services/header/header-request.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { loadAmount } from 'src/app/store/store-pagination/store-pagination-action';
 import { openWarning } from 'src/app/store/store-warning/store-warning-action';
 import { environment } from 'src/environments/environment';
 
@@ -16,22 +17,36 @@ export class DashboardProductComponent implements OnInit, OnDestroy {
   urlDestroy: string = `${environment.api.url}${environment.api.product.admin.root}`;
 
   products: Array<any> = [];
-  loadDataSub: Subscription = new Subscription();
+  loadProductDataSub: Subscription = new Subscription();
   destroyProductSub: Subscription = new Subscription();
   destroyProductThumb: Subscription = new Subscription();
+  getProductSub: Subscription = new Subscription();
+  paginationSub: Subscription = new Subscription();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private headerRequest: HeaderRequestService,
     private httpService: HttpService,
-    private store: Store<{warning: any}>
+    private store: Store<{warning: any, pagination: any}>
   ) { }
 
   ngOnInit(): void {
-    this.loadDataSub = this.route.data.subscribe((data: any) => {
-      let { products } = data.products.metadata;
-      this.products = products;
+    this.loadProductDataSub = this.route.data.subscribe((data: any) => {
+      let { amount } = data.amount.metadata;
+
+      this.store.dispatch(loadAmount({amount, kind: 'product'}));
+      this.paginationSub = this.store.select("pagination").subscribe((data) => {
+        let {  currentPage, itemsOfPage } = data;
+        let start = currentPage * itemsOfPage;
+        let url: string = `${environment.api.urlCommon}${environment.api.product.common.root}/${start}/${itemsOfPage}`;
+
+        this.getProductSub = this.httpService.get(url).subscribe((data: any) => {
+          let { products } = data.metadata;
+          this.products = products;
+        })
+
+      })
     })
   }
 
@@ -53,7 +68,10 @@ export class DashboardProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.loadDataSub.unsubscribe();
+    this.loadProductDataSub.unsubscribe();
+    this.getProductSub.unsubscribe();
+    this.paginationSub.unsubscribe();
+
     this.destroyProductSub.unsubscribe();
     this.destroyProductThumb.unsubscribe();
   }
