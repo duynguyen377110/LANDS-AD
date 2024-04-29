@@ -1,10 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-common-table',
   templateUrl: './common-table.component.html',
   styleUrls: ['./common-table.component.scss']
 })
-export class CommonTableComponent {
+export class CommonTableComponent implements OnInit, OnDestroy {
 
   @Input('type') type: string = '';
   @Input('list') list: Array<any> = [];
@@ -17,11 +19,31 @@ export class CommonTableComponent {
   columnsCategory: Array<string> = ['STT', 'Tiêu đề', 'Ảnh', "Sản phẩm", 'Chức năng'];
   columnsProduct: Array<string> = ['STT', 'Chủ sở hữu', 'Ảnh', 'Diện tích', 'Giá', 'Chức năng'];
 
+  currentPage: number = 0;
+  itemsOfPage: number = 0;
+  paginationSub: Subscription = new Subscription();
+
+  constructor(
+    private store: Store<{pagination: any}>
+  ) {}
+
+  ngOnInit(): void {
+    this.paginationSub = this.store.select('pagination').subscribe((data: any) => {
+      let { currentPage, itemsOfPage } = data;
+      this.currentPage = currentPage;
+      this.itemsOfPage = itemsOfPage;
+    })
+  }
+
   onDeleteHandler(event: any) {
     this.emitDelete.emit(event);
   }
 
   onEditHandler(event: any) {
     this.emitUpdate.emit(event);
+  }
+
+  ngOnDestroy(): void {
+    this.paginationSub.unsubscribe()
   }
 }
